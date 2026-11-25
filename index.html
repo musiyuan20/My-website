@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>كتاب الدروس</title>
+<style>
+:root{--bg:#f3f5fa;--card:#fff;--tx:#1b1f2a;--mu:#5b6478;--ac:#4f46e5;--ac2:#eef0ff;--bd:#e1e5ef;--mk:#fff3b0;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1117;--card:#1a1d27;--tx:#ecefff;--mu:#a3abc2;--ac:#8b94ff;--ac2:#242850;--bd:#2c3042;--mk:#5a4d00;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1117;--card:#1a1d27;--tx:#ecefff;--mu:#a3abc2;--ac:#8b94ff;--ac2:#242850;--bd:#2c3042;--mk:#5a4d00;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.7 system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+.top{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);display:flex;gap:16px;justify-content:center;padding:10px;z-index:5;border-bottom:1px solid var(--bd)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.c{width:48px;height:48px;border-radius:50%;border:2px solid var(--ac);background:var(--card);color:var(--ac);font-size:19px;font-weight:700;cursor:pointer;box-shadow:0 2px 6px #0002}
+.c.off{background:var(--ac);color:#fff;text-decoration:line-through}
+.wrap{max-width:740px;margin:0 auto;padding:14px}
+h1{text-align:center;font-size:23px;margin:18px 0}
+.home{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.hb{text-align:center;max-width:150px;font-size:14px;color:var(--mu);direction:ltr}
+.hb .c{width:96px;height:96px;font-size:38px;display:block;margin:0 auto 8px;background:linear-gradient(135deg,var(--ac),#9b6bff);color:#fff;border:0}
+.back{background:none;border:0;color:var(--ac);font-size:16px;cursor:pointer}
+.hd{background:linear-gradient(135deg,var(--ac),#9b6bff);color:#fff;border-radius:18px;padding:16px;text-align:center;margin:8px 0 16px}
+.hd h1{margin:4px 0;color:#fff;font-size:21px;direction:ltr}
+.pt{margin:22px 0 8px;color:var(--ac);font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px}
+.pt::after{content:"";flex:1;height:1px;background:var(--bd)}
+.s{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin:10px 0;box-shadow:0 1px 4px #0001}
+.n{display:inline-block;background:var(--ac2);color:var(--ac);border-radius:10px;padding:0 9px;font-size:13px;font-weight:700;margin-bottom:4px}
+.en{direction:ltr;text-align:left;font-size:19px;font-weight:500}
+.ar{direction:rtl;text-align:right;color:var(--mu);margin-top:6px;padding-top:6px;border-top:1px dashed var(--bd)}
+mark{background:var(--mk);color:inherit;border-radius:4px;padding:0 2px}
+.v{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin-top:10px}
+.v div{background:var(--ac2);border-radius:10px;padding:6px 10px;font-size:15px;line-height:1.45}
+.v b{display:block;direction:ltr;text-align:left;color:var(--ac)}
+.sp{float:left;margin-right:8px;width:34px;height:34px;border-radius:50%;border:0;background:var(--ac);color:#fff;font-size:16px;cursor:pointer}.v div{cursor:pointer}
+.hide-ar .ar{display:none}.hide-en .en{display:none}
+</style></head><body>
+<div class="top">
+<button class="c" id="bt" title="وضع داكن/فاتح">☾</button>
+<button class="c" id="ba" title="إخفاء العربي">ع</button>
+<button class="c" id="be" title="إخفاء الإنجليزي">E</button>
+</div>
+<div class="wrap" id="app"></div>
+<script>
+// كل سطر: الجملة الإنجليزية | الترجمة | كلمات (كلمة=معنى؛ ...) — الفقرات تفصلها سطر فاضي
+const D=[
+{t:"A Gentleman, His Family, and His Career",x:`During his term of office, Mr. Adam became a respected manager.|خلال فترة منصبه، أصبح السيد آدم مديرًا محترمًا.|term of office=فترة المنصب، مدة الولاية؛ respected=محترم، موقّر؛ manager=مدير
+He was a diligent and industrious man who was extremely serious about his responsibilities.|كان رجلًا مجتهدًا ونشيطًا، وجادًا للغاية في مسؤولياته.|diligent=مجتهد، مثابر، دؤوب؛ industrious=نشيط، كادح؛ extremely=للغاية، بشدة؛ responsibilities=مسؤوليات، واجبات
+He was also a true gentleman, known for his polite demeanor and frank and forthright personality.|وكان أيضًا رجلًا نبيلًا حقًا، معروفًا بسلوكه المهذب وشخصيته الصريحة المباشرة.|gentleman=رجل نبيل، جنتلمان؛ polite=مهذب، مؤدب؛ demeanor=سلوك، هيئة، تصرف؛ frank=صريح؛ forthright=مباشر، صريح بلا مواربة
+
+One day, he received an important revelation that changed his understanding of leadership.|في يوم من الأيام، تلقّى كشفًا مهمًا غيّر فهمه للقيادة.|revelation=كشف، اكتشاف مفاجئ، وحي؛ leadership=قيادة؛ understanding=فهم، إدراك
+He realized that a successful manager needed to be skilled, adept, and experienced.|أدرك أن المدير الناجح يجب أن يكون ماهرًا وبارعًا وصاحب خبرة.|realize=يدرك، يفطن؛ skilled=ماهر؛ adept=بارع، متمكن؛ experienced=ذو خبرة
+He was always eager to learn new things and implement useful ideas.|كان دائمًا حريصًا على تعلّم أشياء جديدة وتطبيق الأفكار المفيدة.|eager=حريص، متلهف، شغوف؛ implement=ينفّذ، يطبّق
+He also liked to practice new methods and supervise and urge his employees to improve their performance.|كما كان يحب تجربة أساليب جديدة، والإشراف على موظفيه وحثّهم على تحسين أدائهم.|practice=يمارس، يجرّب؛ supervise=يشرف على؛ urge=يحثّ، يلحّ على؛ employees=موظفون؛ performance=أداء
+
+Although he was sometimes stern and severe, he knew how to restrain his anger and keep his employees within bounds.|ومع أنه كان أحيانًا صارمًا وحازمًا، عرف كيف يكبح غضبه ويُبقي موظفيه ضمن الحدود.|stern=صارم، عابس؛ severe=قاسٍ، شديد؛ restrain=يكبح، يضبط؛ within bounds=ضمن الحدود، تحت السيطرة
+He never wanted to ignore or neglect their problems.|لم يرغب أبدًا في تجاهل مشاكلهم أو إهمالها.|ignore=يتجاهل؛ neglect=يهمل، يقصّر في
+Instead, he tried to be tolerant and understand their difficulties.|بل حاول أن يكون متسامحًا ويتفهّم صعوباتهم.|instead=بدلًا من ذلك؛ tolerant=متسامح، صبور؛ difficulties=صعوبات
+
+During meetings, he encouraged everyone to speak freely.|خلال الاجتماعات، كان يشجّع الجميع على الكلام بحرية.|encourage=يشجّع؛ freely=بحرية
+If someone had a doubt or felt confusion, he would ask a question in reply to understand the situation better.|وإذا كان لدى أحدهم شك أو شعر بالارتباك، كان يطرح سؤالًا ردًّا عليه ليفهم الموقف أفضل.|doubt=شك، ريبة؛ confusion=ارتباك، حيرة؛ in reply=ردًّا على ذلك، في المقابل
+Sometimes, employees tried to refute his decisions or retort angrily, but he remained calm.|وأحيانًا حاول الموظفون دحض قراراته أو الرد بغضب، لكنه ظل هادئًا.|refute=يدحض، يفنّد؛ retort=يردّ بحدّة؛ angrily=بغضب؛ remain calm=يبقى هادئًا
+
+He believed that people should not envy one another or ridicule others.|كان يؤمن بأنه لا ينبغي للناس أن يحسدوا بعضهم أو يسخروا من الآخرين.|envy=يحسد، حسد؛ ridicule=يسخر من، يستهزئ بـ
+He disliked those who tried to curry favor with their managers instead of working honestly.|وكان يكره من يحاولون التملّق لمديريهم بدل العمل بأمانة.|curry favor=يتملّق، ينافق، يتودد؛ honestly=بأمانة، بصدق
+He also disliked people who shouted and yelled during arguments or allowed disagreements to come to blows.|وكان يكره أيضًا من يصرخون أثناء الجدال أو يتركون الخلافات تصل إلى التشابك بالأيدي.|shout=يصرخ؛ yell=يصيح بعلوّ الصوت؛ arguments=جدال، مشادّة؛ disagreements=خلافات؛ come to blows=يتشابك بالأيدي
+
+He wanted all his employees to be on friendly terms and on good terms with one another.|أراد أن يكون كل موظفيه على علاقة ودية وعلاقة جيدة ببعضهم.|on friendly terms=علاقتهم ودّية؛ on good terms=علاقتهم جيدة
+He believed that a close and intimate relationship between colleagues was important.|وكان يؤمن بأن العلاقة الوثيقة الحميمة بين الزملاء مهمة.|close=وثيق، قريب؛ intimate=حميم؛ colleagues=زملاء
+However, some employees were on bad terms because they found it difficult to get along.|ومع ذلك، كان بعض الموظفين على علاقة سيئة لأنهم وجدوا صعوبة في التوافق.|however=ومع ذلك، لكن؛ on bad terms=علاقتهم سيئة؛ get along=ينسجم، يتوافق
+
+One morning, two workers started to fight.|في صباح أحد الأيام، بدأ عاملان يتشاجران.|fight=يتشاجر، يتقاتل
+One of them began to pour out his complaints in a steady flow of words.|بدأ أحدهما يسكب شكاواه في سيل متواصل من الكلمات.|pour out=يسكب، يفرغ؛ complaints=شكاوى؛ steady flow=تدفّق متواصل
+The other tried to make fun of him.|وحاول الآخر السخرية منه.|make fun of=يسخر من، يتهكم على
+Mr. Adam immediately intervened and reminded them that they should respect other people and never insult anyone to their face or in their presence.|تدخّل السيد آدم فورًا وذكّرهما بأن عليهما احترام الآخرين وألّا يهينوا أحدًا في وجهه أو بحضوره.|intervene=يتدخل؛ remind=يذكّر؛ respect=يحترم، احترام؛ insult=يهين، يسيء إلى؛ to one’s face=في وجهه، مباشرة؛ in one’s presence=بحضوره
+
+Another employee decided to echo the manager’s advice and chime in with his opinion.|قرر موظف آخر أن يردّد نصيحة المدير ويشارك برأيه.|echo=يردّد، يكرّر؛ chime in=يشارك بالكلام، يتدخل برأيه
+Soon, we all joined the discussion, and everybody agreed that a harmonious workplace was better for everyone.|وسرعان ما انضممنا جميعًا إلى النقاش، واتفق الجميع على أن مكان العمل المتناغم أفضل للجميع.|join=ينضم إلى؛ harmonious=متناغم، منسجم؛ workplace=مكان العمل
+At an instant, the room became completely quiet.|وفي لحظة، صارت الغرفة هادئة تمامًا.|at an instant=في لحظة، فجأة؛ completely=تمامًا، كليًّا
+Everyone listened in utter silence as Mr. Adam explained an important lesson.|أنصت الجميع في صمت تام بينما شرح السيد آدم درسًا مهمًا.|utter=تام، مطلق؛ silence=صمت، سكون
+He also wanted to initiate new employees into the basics of their jobs and impart elementary knowledge to beginners.|كما أراد أن يُدخل الموظفين الجدد في أساسيات وظائفهم ويمنح المبتدئين معرفة أولية.|initiate=يُدخل، يلقّن أساسيات؛ basics=أساسيات؛ impart=ينقل، يمنح (معرفة)؛ elementary=أولي، ابتدائي؛ beginners=مبتدئون
+
+After work, he returned home to his husband-and-wife family life.|بعد العمل، عاد إلى البيت وإلى حياته الأسرية كزوج وزوجة.|husband-and-wife=زوجي، بين الزوجين؛ family life=حياة أسرية
+He and his wife enjoyed spending time together and eating delicious food.|استمتع هو وزوجته بقضاء الوقت معًا وتناول الطعام اللذيذ.|delicious=لذيذ، شهي
+He was always honest with her and never hesitated to express his feelings.|كان دائمًا صادقًا معها ولا يتردد في التعبير عن مشاعره.|hesitate=يتردد، يتلكأ؛ express=يعبّر عن؛ feelings=مشاعر، أحاسيس
+He believed that a successful life required not only hard work but also love, respect, patience, and understanding.|وكان يؤمن بأن الحياة الناجحة تتطلب لا العمل الجاد فقط، بل الحب والاحترام والصبر والتفاهم أيضًا.|require=يتطلب، يستلزم؛ patience=صبر، أناة`},
+
+{t:"The Last Letter: A Journey Through Time and Tears",x:`Daniel was a young man with a kindly and amiable personality.|كان دانيال شابًا ذا شخصية لطيفة ودودة.|kindly=لطيف، طيّب القلب؛ amiable=ودود، حسن المعشر؛ personality=شخصية
+He was gentle and thoughtful, and even strangers felt comfortable around him.|كان رقيقًا ومراعيًا، حتى الغرباء شعروا بالراحة حوله.|gentle=رقيق، لطيف؛ thoughtful=مراعٍ، متأمّل؛ strangers=غرباء
+His grandmother, an elderly woman with a kindly, affable nature, had always taught him that kindness was a rare treasure.|وجدّته، وهي امرأة مسنّة طيبة بشوشة الطبع، علّمته دائمًا أن اللطف كنز نادر.|elderly=مسنّ، متقدم في السن؛ affable=بشوش، ودود؛ nature=طبع، طبيعة؛ rare=نادر؛ treasure=كنز
+She had a special expression in her eyes that made people feel understood without saying a word.|وكان في عينيها تعبير خاص يجعل الناس يشعرون بأنهم مفهومون دون أن تنطق بكلمة.|expression=تعبير، نظرة
+
+One cold evening, Daniel stood alone at the railway station.|في مساء بارد، وقف دانيال وحيدًا في محطة القطار.|railway station=محطة سكة حديد
+He had been yearning for a reunion with his childhood friend, Lily, whom he had not seen for many years.|كان يتوق إلى لقاء صديقة طفولته ليلي، التي لم يرها منذ سنوات طويلة.|yearn=يتوق، يشتاق بشدة؛ reunion=لمّ الشمل، لقاء بعد فراق؛ childhood=طفولة
+He was dying to see her again and could hardly wait for the moment when they would meet.|كان يتحرّق شوقًا لرؤيتها ولا يكاد يصبر حتى لحظة لقائهما.|dying to=يتحرّق شوقًا لـ؛ could hardly wait=بالكاد يصبر، لا يطيق الانتظار
+
+He took a few slow steps across the platform, his pace becoming faster as the train approached.|خطا بضع خطوات بطيئة عبر الرصيف، وصارت خطاه أسرع مع اقتراب القطار.|platform=رصيف المحطة؛ pace=وتيرة، سرعة الخطى؛ approach=يقترب
+He had recently received a mysterious letter from her.|كان قد تلقّى مؤخرًا رسالة غامضة منها.|recently=مؤخرًا، حديثًا؛ mysterious=غامض، محيّر
+The letter was a handwritten manuscript, containing a short but meaningful contribution to the story of their friendship.|كانت الرسالة مخطوطة بخط اليد، تحمل إسهامًا قصيرًا لكنه ذو معنى في قصة صداقتهما.|handwritten=مكتوب بخط اليد؛ manuscript=مخطوطة؛ meaningful=ذو معنى؛ contribution=إسهام، مساهمة؛ friendship=صداقة
+“Why did you leave without saying goodbye?” he whispered.|“لماذا رحلتِ دون أن تودّعي؟” همس.|whisper=يهمس، همس
+“You didn’t have to separate yourself from everyone who loved you.|“لم يكن عليكِ أن تفصلي نفسكِ عن كل من أحبّوكِ.|separate=يفصل، يعزل، يفرّق
+You could have decided for yourself and followed your dreams without disappearing.”|كان بإمكانكِ أن تقرّري لنفسكِ وتتبعي أحلامكِ دون أن تختفي.”|disappear=يختفي، يتلاشى؛ follow=يتبع، يلاحق
+
+For years, Daniel had lived a lonely and solitary life.|لسنوات، عاش دانيال حياة وحيدة منعزلة.|lonely=وحيد، موحش؛ solitary=منعزل، منفرد
+Sometimes he would cry and weep when he remembered their childhood.|وأحيانًا كان يبكي وينتحب حين يتذكر طفولتهما.|cry=يبكي؛ weep=ينتحب، يبكي بحرقة
+Every short while, he would look at his watch, hoping she would arrive.|وكل فترة قصيرة، كان ينظر إلى ساعته آملًا أن تصل.|every short while=كل فترة قصيرة، بين الحين والآخر
+His memories seemed to surround and encircle him, leaving him unable to escape the past.|بدت ذكرياته تحيط به وتطوّقه، فلا يستطيع الهرب من الماضي.|surround=يحيط بـ؛ encircle=يطوّق، يحاصر؛ escape=يهرب من، ينجو
+
+His grandmother once told him, “You needn’t spend your whole life waiting.|قالت له جدّته ذات مرة: “لا داعي أن تقضي حياتك كلها في الانتظار.|needn’t=لا داعي أن، ليس من الضروري
+Don’t let sadness infect your heart or affect your future.|لا تدع الحزن يصيب قلبك أو يؤثر في مستقبلك.|sadness=حزن؛ infect=يصيب، يعدي؛ affect=يؤثر في
+Some people may try to entice and tempt you with easy promises, but true happiness is often hard to find.”|قد يحاول بعض الناس إغراءك بوعود سهلة، لكن السعادة الحقيقية غالبًا ما تكون صعبة المنال.”|entice=يغري، يستدرج؛ tempt=يغوي، يستهوي؛ promises=وعود
+She also believed that Lily was incomparable, a person whose kindness was unparalleled.|وكانت تؤمن أيضًا بأن ليلي لا مثيل لها، إنسانة لا يُضاهى لطفها.|incomparable=لا مثيل له، لا يُقارن؛ unparalleled=منقطع النظير، لا يُجارى
+No one could take her place in Daniel’s memories.|لا أحد يستطيع أن يحلّ محلها في ذكريات دانيال.|take one’s place=يحلّ محلّه
+
+As the years passed, Daniel became anxious about her safety.|مع مرور السنين، صار دانيال قلقًا على سلامتها.|anxious=قلق، متوتر؛ safety=سلامة، أمان
+He was always itching to discover what had happened to her.|وكان دائمًا متلهفًا لمعرفة ما حدث لها.|itching to=متلهف لـ، يتحرّق لـ؛ discover=يكتشف، يعرف
+He remembered how they used to sit in front of the old library, discussing their dreams and planning their future.|تذكّر كيف كانا يجلسان أمام المكتبة القديمة، يناقشان أحلامهما ويخططان لمستقبلهما.|used to=اعتاد أن (في الماضي)؛ library=مكتبة؛ plan=يخطط
+Recently, he had learned that Lily was living in a small village nearby.|مؤخرًا علم أن ليلي تعيش في قرية صغيرة قريبة.|village=قرية؛ nearby=قريب، بالجوار
+She had returned after many difficult years.|كانت قد عادت بعد سنوات صعبة كثيرة.|
+Her life had been far from ordinary; she had experienced unusual and sometimes abnormal circumstances that forced her to leave her hometown.|لم تكن حياتها عادية أبدًا؛ فقد مرّت بظروف غير مألوفة، وأحيانًا شاذّة، أجبرتها على مغادرة مسقط رأسها.|far from ordinary=بعيدة كل البعد عن العادي؛ unusual=غير مألوف؛ abnormal=شاذّ، غير طبيعي؛ circumstances=ظروف؛ force=يُجبر، يرغم؛ hometown=مسقط الرأس
+
+She had spent years working in silence, trying to endure and hold out against hardship.|قضت سنوات تعمل بصمت، تحاول أن تتحمّل وتصمد أمام المشقّة.|endure=يتحمّل، يصبر على؛ hold out=يصمد، يقاوم؛ hardship=مشقة، عناء
+At times, she felt listless and in low spirits, but she refused to surrender.|وفي بعض الأحيان، شعرت بالفتور وانخفاض المعنويات، لكنها رفضت الاستسلام.|at times=أحيانًا؛ listless=فاتر الهمة، بلا حماس؛ in low spirits=معنوياته منخفضة؛ refuse=يرفض؛ surrender=يستسلم
+She learned to bear hardships and suffer without losing her hope.|تعلّمت أن تتحمّل الشدائد وتعاني دون أن تفقد أملها.|bear=يتحمل، يطيق؛ suffer=يعاني؛ hope=أمل
+One day, while sitting beside an old window, she began to brew a cup of tea and deliberate upon the past.|وفي يوم، وهي جالسة بجانب نافذة قديمة، بدأت تعدّ كوب شاي وتتأمل الماضي مليًّا.|brew=يحضّر (الشاي)، يخمّر؛ deliberate upon=يتأمل في، يفكر مليًّا في
+She wondered whether Daniel still remembered her.|تساءلت هل ما زال دانيال يتذكرها.|wonder=يتساءل، يتعجب
+A sudden memory brought tears to her eyes, and she couldn’t help crying.|أتت ذكرى مفاجئة بالدموع إلى عينيها، ولم تستطع منع نفسها من البكاء.|sudden=مفاجئ، فجائي؛ tears=دموع؛ couldn’t help=لا تستطيع منع نفسها من
+
+Her face showed the marks of time.|ظهرت على وجهها آثار الزمن.|marks of time=آثار الزمن، علامات التقدّم في العمر
+A small wrinkle appeared near her eyes, but her smile remained warm.|ظهرت تجعيدة صغيرة قرب عينيها، لكن ابتسامتها بقيت دافئة.|wrinkle=تجعيدة؛ warm=دافئ
+She was finally gratified and satisfied with the strength she had discovered within herself.|وأخيرًا كانت مسرورة وراضية عن القوة التي اكتشفتها في داخلها.|gratified=مسرور، مغتبط؛ satisfied=راضٍ، مقتنع؛ strength=قوة
+Meanwhile, Daniel had begun to plan a new life.|في الأثناء، كان دانيال قد بدأ يخطط لحياة جديدة.|meanwhile=في الأثناء، في هذه الأثناء
+He wanted to find her, but he knew that some wounds needed time to heal.|أراد أن يجدها، لكنه عرف أن بعض الجروح تحتاج وقتًا لتلتئم.|wound=جرح؛ heal=يلتئم، يُشفى
+He had developed the ability and capability to forgive, understand, and make allowances for people’s mistakes.|وقد نمّى القدرة على التسامح والفهم وإيجاد الأعذار لأخطاء الناس.|capability=قدرة، كفاءة؛ forgive=يغفر، يسامح؛ make allowances for=يلتمس العذر لـ، يتغاضى عن؛ mistakes=أخطاء
+
+Suddenly, a familiar voice called his name.|فجأة، نادى صوت مألوف اسمه.|suddenly=فجأة؛ familiar=مألوف، معروف
+“Daniel!”|“دانيال!”|
+He turned around at once, within a split second.|التفت فورًا، في أقل من جزء من الثانية.|at once=فورًا، في الحال؛ within a split second=في جزء من الثانية
+There she was, standing close to him, her eyes brimming with tears.|كانت هناك، واقفة قربه، وعيناها تفيضان بالدموع.|brimming with=تفيض بـ، ممتلئة بـ
+For a moment, neither of them spoke.|للحظة، لم يتكلم أي منهما.|neither=لا هذا ولا ذاك، لا أحد من الاثنين
+The station became completely quiet and silent.|وساد المحطة هدوء وسكون تام.|quiet=هادئ
+“I thought I had lost you forever,” Daniel said.|“ظننتُ أنني فقدتكِ إلى الأبد،” قال دانيال.|forever=إلى الأبد
+Lily smiled and replied, “Sometimes life separates people, but it cannot always destroy the memories that connect them.”|ابتسمت ليلي وردّت: “أحيانًا تفرّق الحياة بين الناس، لكنها لا تستطيع دائمًا تدمير الذكريات التي تربط بينهم.”|destroy=يدمّر، يهدم؛ connect=يربط، يصل
+
+Daniel did not complain or blame her.|لم يشتكِ دانيال ولم يلمها.|complain=يشتكي؛ blame=يلوم، يُحمّل المسؤولية
+Instead, he tried to show understanding and sympathy and make allowances for everything she had endured.|بل حاول أن يُظهر التفهّم والتعاطف وأن يلتمس العذر لكل ما تحمّلته.|sympathy=تعاطف، مواساة
+They finally embraced.|وأخيرًا تعانقا.|embrace=يعانق، يحتضن
+Their long-awaited reunion had become a reality.|وصار لقاؤهما الذي طال انتظاره حقيقة.|long-awaited=طال انتظاره؛ reality=حقيقة واقعة
+And as the train slowly disappeared into the distance, Daniel understood something extraordinary:|وبينما اختفى القطار ببطء في البعيد، أدرك دانيال شيئًا استثنائيًا:|in the distance=من بعيد، في الأفق؛ extraordinary=استثنائي، خارق للعادة
+Some people are so special that their absence cannot be measured by time, and some reunions are worth every moment of waiting.|بعض الناس مميزون لدرجة أن غيابهم لا يُقاس بالزمن، وبعض اللقاءات تستحق كل لحظة انتظار.|absence=غياب؛ measure=يقيس؛ worth=يستحق، جدير بـ`},
+
+{t:"The Man Who Returned at Dawn",x:`At early morning, when the first rays of sunlight touched the old harbor, a stranger arrived in a small town after twenty years of absence.|في الصباح الباكر، حين لامست أولى أشعة الشمس الميناء القديم، وصل غريب إلى بلدة صغيرة بعد غياب عشرين عامًا.|rays=أشعة؛ harbor=ميناء، مرفأ؛ touch=يلامس، يمسّ
+His appearance and look had changed considerably.|لقد تغيّر مظهره وهيئته كثيرًا.|appearance=مظهر، هيئة؛ look=هيئة، شكل؛ considerably=إلى حد كبير، بشكل ملحوظ
+His hair was gray, his moustache and beard were thick, and his face carried the marks of a man who had witnessed many changes in life.|كان شعره رماديًا، وشاربه ولحيته كثيفين، وحمل وجهه آثار رجل شهد تغيّرات كثيرة في الحياة.|gray=رمادي؛ moustache=شارب؛ beard=لحية؛ thick=كثيف، سميك؛ witness=يشهد، يعاصر
+
+He walked through the narrow streets, looking at the familiar buildings.|مشى عبر الشوارع الضيقة ينظر إلى المباني المألوفة.|narrow=ضيق؛ buildings=مبانٍ
+An old shopkeeper stood outside his store and began to size him up, looking him up and down carefully.|وقف صاحب متجر عجوز خارج متجره وبدأ يقيّمه، يتفحصه من رأسه إلى قدميه بعناية.|shopkeeper=صاحب متجر؛ size up=يقيّم، يتفحّص؛ look up and down=ينظر من الرأس إلى القدم؛ carefully=بعناية، بحذر
+“Are you Daniel?” the shopkeeper asked.|“هل أنت دانيال؟” سأل صاحب المتجر.|
+Daniel nodded. “Yes. I have returned.”|أومأ دانيال برأسه: “نعم. لقد عدت.”|nod=يومئ برأسه؛ return=يعود، يرجع
+
+The shopkeeper looked at him head-on, almost unable to believe his eyes.|نظر إليه صاحب المتجر وجهًا لوجه، وكاد لا يصدّق عينيه.|head-on=وجهًا لوجه، مباشرة؛ almost=كاد، تقريبًا
+His voice was hesitant.|كان صوته متردّدًا.|hesitant=متردد، مرتبك
+“After all these years? What brings you back?”|“بعد كل هذه السنين؟ ما الذي أعادك؟”|what brings you back=ما الذي أعادك؟
+Daniel smiled faintly. “I have unfinished business here.”|ابتسم دانيال ابتسامة خفيفة: “لديّ أمور لم تنتهِ هنا.”|faintly=بخفّة، بشكل خافت؛ unfinished business=أمور عالقة لم تُحسم
+
+He entered the old tailor’s shop, where his father had once worked as a tailor.|دخل محل الخياط القديم، حيث عمل والده يومًا خياطًا.|tailor=خيّاط؛ once=ذات يوم، في وقت سابق
+The place looked almost the same, although the furniture was worn out.|بدا المكان تقريبًا كما كان، رغم أن الأثاث كان بالِيًا.|furniture=أثاث؛ worn out=بالٍ، متهالك؛ although=رغم أن
+A young assistant was rubbing his hands nervously while waiting for customers.|كان مساعد شاب يفرك يديه بتوتر وهو ينتظر الزبائن.|assistant=مساعد؛ rub=يفرك، يدلك؛ nervously=بتوتر، بعصبية؛ customers=زبائن
+“Could I ask you a favor?” Daniel said.|“هل يمكنني أن أطلب منك معروفًا؟” قال دانيال.|ask a favor=يطلب معروفًا
+“I need you to help me find someone.”|“أحتاج أن تساعدني في العثور على شخص.”|
+“Who are you looking for?”|“عمّن تبحث؟”|
+“My former friend, Edward. He was the original owner of this shop.”|“صديقي السابق إدوارد. كان المالك الأصلي لهذا المحل.”|former=سابق؛ original=أصلي، أول؛ owner=مالك
+
+The assistant hesitated before answering.|تردّد المساعد قبل أن يجيب.|
+“You should be careful. Edward has a reputation in this town, and not all of it is good.”|“يجب أن تكون حذرًا. لإدوارد سمعة في هذه البلدة، وليست كلها جيدة.”|careful=حذر، متنبّه؛ reputation=سمعة
+Daniel had always been sincere and honest.|كان دانيال دائمًا مخلصًا وصادقًا.|sincere=مخلص، صادق، نزيه
+He had never intended to deceive anyone or cheat them.|لم ينوِ يومًا خداع أحد أو غشّه.|intend=ينوي، يقصد؛ deceive=يخدع، يضلّل؛ cheat=يغشّ، يحتال على
+Yet he knew that some people had lost their face and reputation because of Edward’s actions.|ومع ذلك كان يعرف أن بعض الناس فقدوا ماء وجههم وسمعتهم بسبب أفعال إدوارد.|yet=ومع ذلك، لكن؛ lose face=يفقد ماء الوجه، يتعرض للإهانة؛ actions=أفعال، تصرفات
+
+During his years abroad, Daniel had worked exceedingly hard.|خلال سنوات غربته، عمل دانيال بجهد بالغ.|abroad=في الخارج، في الغربة؛ exceedingly=للغاية، بشكل مفرط
+He had earned an academic degree and eventually became a first-class engineer.|نال شهادة أكاديمية، وأصبح في النهاية مهندسًا من الطراز الأول.|earn=ينال، يكسب؛ academic degree=شهادة أكاديمية؛ eventually=في النهاية، بمرور الوقت؛ first-class=من الدرجة الأولى؛ engineer=مهندس
+He had also become the mainstay and backbone of a large company, working under a responsible manager with the help of a capable assistant.|وأصبح أيضًا عماد شركة كبيرة وعمودها الفقري، يعمل تحت إدارة مدير مسؤول بمساعدة مساعد كفء.|mainstay=عماد، ركيزة أساسية؛ backbone=عمود فقري، سند؛ responsible=مسؤول، موثوق؛ capable=كفء، قادر
+But success had never made him forget his hometown.|لكن النجاح لم يُنسِه مسقط رأسه أبدًا.|success=نجاح؛ forget=ينسى
+He was still as ever concerned about his family and the people who had supported him.|وظلّ كما كان دائمًا مهتمًا بعائلته وبمن دعموه.|concerned about=مهتم بـ، قلق على؛ support=يدعم، يسند
+
+At least once a year, he would call his mother, using the old telephone number he had memorized.|مرة في السنة على الأقل، كان يتصل بأمه مستخدمًا رقم الهاتف القديم الذي حفظه.|at least=على الأقل؛ memorize=يحفظ عن ظهر قلب
+His voice always carried a faint and indistinct accent, a mixture of his original language and the foreign country where he had lived.|كان صوته يحمل دائمًا لكنة خفيفة غير واضحة، مزيجًا من لغته الأصلية والبلد الأجنبي الذي عاش فيه.|faint=خافت، ضعيف؛ indistinct=غير واضح، مبهم؛ accent=لكنة؛ mixture=مزيج، خليط؛ foreign=أجنبي، غريب
+He was too proud to flaunt his achievements or show off his wealth.|كان أكثر كبرياءً من أن يتباهى بإنجازاته أو يستعرض ثروته.|proud=فخور، معتزّ بنفسه؛ flaunt=يتباهى بـ، يعرض بفخر؛ show off=يستعرض، يتفاخر؛ achievements=إنجازات؛ wealth=ثروة
+He preferred to live a gentle and refined life, treating everyone with respect.|فضّل أن يعيش حياة هادئة راقية، يعامل الجميع باحترام.|prefer=يفضّل؛ refined=راقٍ، مهذّب؛ treat=يعامل، يتصرف مع
+
+That afternoon, Daniel finally found Edward near the harbor.|بعد ظهر ذلك اليوم، وجد دانيال إدوارد أخيرًا قرب الميناء.|
+Edward was wearing a magnificent suit, with a splendid and bright watch on his wrist.|كان إدوارد يرتدي بدلة فاخرة، وفي معصمه ساعة رائعة لامعة.|magnificent=فاخر، عظيم، مهيب؛ suit=بدلة؛ splendid=رائع، باهر؛ bright=لامع، ساطع؛ wrist=معصم
+His appearance was delightful, but something about his behavior seemed strange.|كان مظهره جذابًا، لكن شيئًا في تصرفه بدا غريبًا.|delightful=جذاب، مبهج؛ behavior=تصرف، سلوك؛ strange=غريب، مريب
+Edward looked Daniel up and down.|نظر إدوارد إلى دانيال من رأسه إلى قدميه.|
+“Well, well! The successful man has finally returned!”|“حسنًا حسنًا! عاد الرجل الناجح أخيرًا!”|well, well=حسنًا حسنًا (للتهكم أو الدهشة)
+Daniel replied calmly, “I didn’t come here to impress anyone.”|ردّ دانيال بهدوء: “لم آتِ إلى هنا لأُبهر أحدًا.”|calmly=بهدوء، بتروٍّ؛ impress=يُبهر، يترك انطباعًا
+Edward laughed. “You have become exceedingly successful. I hope you haven’t forgotten who you used to be.”|ضحك إدوارد: “لقد أصبحت ناجحًا جدًا. آمل ألا تكون قد نسيت من كنتَ.”|
+
+Daniel looked him straight in the eyes.|نظر دانيال في عينيه مباشرة.|straight=مباشرة، بشكل مستقيم
+“I remember everything. I remember the promises, the lies, and the people you let down.”|“أتذكر كل شيء. أتذكر الوعود والأكاذيب والناس الذين خذلتهم.”|lies=أكاذيب، أكاذيب؛ let down=يخذل، يخيّب أمل
+Edward’s smile disappeared.|اختفت ابتسامة إدوارد.|
+Daniel continued, “You deceived my father and failed to live up to your promises.|واصل دانيال: “خدعتَ أبي ولم تفِ بوعودك.|continue=يواصل، يستمر؛ fail=يفشل، يخفق؛ live up to=يفي بـ، يرقى إلى مستوى
+You made him lose his reputation, and you disgraced our family.”|جعلته يفقد سمعته، وأخزيتَ عائلتنا.”|disgrace=يُخزي، يجلب العار على
+Edward tried to defend himself, but Daniel had come with evidence.|حاول إدوارد الدفاع عن نفسه، لكن دانيال جاء ومعه الدليل.|defend=يدافع عن؛ evidence=دليل، إثبات
+
+He placed an old document on the table with utmost care, almost gingerly, as if it were a priceless treasure.|وضع وثيقة قديمة على الطاولة بعناية فائقة، وبحذر شديد تقريبًا، كأنها كنز لا يُقدَّر بثمن.|place=يضع، يُنزل؛ document=وثيقة، مستند؛ utmost=أقصى، فائق؛ gingerly=بحذر شديد، برفق؛ priceless=لا يُقدَّر بثمن
+The document revealed Edward’s original intention and proved that he had cheated Daniel’s father many years ago.|كشفت الوثيقة نية إدوارد الأصلية وأثبتت أنه غشّ والد دانيال قبل سنوات كثيرة.|reveal=يكشف، يُظهر؛ intention=نيّة، قصد؛ prove=يثبت
+Edward’s face turned pale.|شحب وجه إدوارد.|turn pale=يشحب، يصفرّ وجهه
+“Where did you get this?” he whispered.|“من أين حصلت على هذا؟” همس.|
+“From the person who kept it safe all these years.”|“من الشخص الذي حفظها بأمان طوال هذه السنين.”|keep safe=يحفظ بأمان
+For a moment, neither man spoke. The sound of waves filled the harbor.|للحظة، لم يتكلم أي من الرجلين. وملأ صوت الأمواج الميناء.|waves=أمواج؛ fill=يملأ
+
+Daniel finally said, “I don’t want revenge. I only hope you will admit the truth and restore what you took.”|قال دانيال أخيرًا: “لا أريد الانتقام. آمل فقط أن تعترف بالحقيقة وتعيد ما أخذته.”|revenge=انتقام، ثأر؛ admit=يعترف، يقرّ؛ truth=حقيقة؛ restore=يعيد، يردّ
+Edward lowered his head.|خفض إدوارد رأسه.|lower=يخفض، ينزل
+For the first time, he understood that a person’s true reputation was not built through expensive clothes, impressive degrees, or magnificent possessions.|وللمرة الأولى فهم أن السمعة الحقيقية للإنسان لا تُبنى بالملابس الغالية أو الشهادات المبهرة أو الممتلكات الفاخرة.|expensive=غالٍ، باهظ؛ impressive=مبهر، مؤثر؛ possessions=ممتلكات، مقتنيات؛ built=يُبنى
+It was built through sincerity, honesty, and the way one treated others.|بل كانت تُبنى بالإخلاص والأمانة وطريقة معاملة المرء للآخرين.|sincerity=إخلاص، صدق؛ honesty=أمانة، صدق
+And as the sun disappeared behind the harbor, Daniel realized that returning home was not about showing the world how successful he had become.|وبينما غابت الشمس خلف الميناء، أدرك دانيال أن العودة إلى الوطن لم تكن لإظهار مدى نجاحه للعالم.|
+It was about finding the truth, protecting his family’s dignity, and finally making peace with the past.|بل كانت للعثور على الحقيقة، وحماية كرامة عائلته، وإحلال السلام مع الماضي أخيرًا.|protect=يحمي، يصون؛ dignity=كرامة، اعتزاز؛ make peace with=يتصالح مع`},
+{t:"The Man Who Refused to Surrender",x:`One evening, as the sun was setting over a small village, a young man named Adam was walking along a flat road near an abandoned factory.|في مساء أحد الأيام، بينما كانت الشمس تغرب فوق قرية صغيرة، كان شاب اسمه آدم يمشي على طريق مستوٍ قرب مصنع مهجور.|set=تغرب (الشمس)، يضع؛ flat=مستوٍ، مسطّح؛ abandoned=مهجور، متروك؛ factory=مصنع
+He was tired of his miserable life and had grown to detest the cruel people who controlled the village.|كان قد سئم حياته البائسة وصار يمقت الناس القساة الذين يسيطرون على القرية.|tired of=سئم من، ضجر من؛ miserable=بائس، تعيس؛ detest=يمقت، يكره بشدة؛ cruel=قاسٍ، ظالم؛ control=يتحكم في، يسيطر على
+
+Adam was not a careless or foolish guy.|لم يكن آدم شخصًا مهملًا أو أحمق.|careless=مهمل، طائش؛ foolish=أحمق، غبي؛ guy=شخص، واحد (عامية)
+He had a sharp mind and a strong conscience.|كان يتمتع بعقل حاد وضمير قوي.|sharp=حاد، ذكي؛ conscience=ضمير
+He had promised his father that he would never surrender to injustice, even if he had to struggle alone.|كان قد وعد أباه بأنه لن يستسلم أبدًا للظلم، حتى لو اضطر إلى الكفاح وحده.|injustice=ظلم، جور؛ struggle=يكافح، يناضل
+
+Unexpectedly, he heard a strange noise behind him.|وعلى غير توقع، سمع ضجة غريبة خلفه.|unexpectedly=على غير توقع، فجأة؛ noise=ضجيج، صوت عالٍ
+He turned around and saw a group of hoodlums approaching.|التفت ورأى مجموعة من البلطجية يقتربون.|hoodlums=بلطجية، قطاع طرق، مجرمون
+Their leader was a hateful and ruthless fellow who looked down upon everyone weaker than himself.|كان زعيمهم رجلًا بغيضًا قاسي القلب يحتقر كل من هو أضعف منه.|hateful=بغيض، مكروه؛ ruthless=عديم الرحمة، قاسي القلب؛ fellow=رجل، شخص، زميل؛ look down upon=يحتقر، ينظر باستعلاء إلى
+
+“Hey, chap! What are you doing here?” the leader shouted.|“أنت يا فتى! ماذا تفعل هنا؟” صاح الزعيم.|chap=يا فتى، يا رجل (عامية بريطانية)
+Adam fixed his eyes on him.|ثبّت آدم عينيه عليه.|fix one’s eyes on=يثبّت عينيه على، يحدّق في
+There was something unusual in his look.|كان في نظرته شيء غير معتاد.|
+His eyes showed anger, but he remained calm.|أظهرت عيناه الغضب، لكنه ظل هادئًا.|anger=غضب
+“Get out of my way,” Adam replied.|“ابتعد عن طريقي،” ردّ آدم.|get out of my way=ابتعد عن طريقي، أفسح لي الطريق
+
+The leader laughed and took a bullet out of his pocket.|ضحك الزعيم وأخرج رصاصة من جيبه.|bullet=رصاصة؛ pocket=جيب
+Adam began to breathe deeply, trying to control his fear.|بدأ آدم يتنفس بعمق محاولًا السيطرة على خوفه.|breathe=يتنفس؛ deeply=بعمق؛ fear=خوف
+He knew that resisting these men would be dangerous, but he refused to flee.|كان يعرف أن مقاومة هؤلاء الرجال ستكون خطيرة، لكنه رفض الفرار.|resist=يقاوم، يتصدى لـ؛ dangerous=خطير؛ flee=يفرّ، يهرب
+“If you think you can frighten me, you’re wrong,” Adam said.|“إن كنت تظن أنك تستطيع إخافتي، فأنت مخطئ،” قال آدم.|frighten=يخيف، يرعب
+The leader became furious. “You stupid boy! Don’t try to oppose me!”|استشاط الزعيم غضبًا: “أيها الولد الغبي! لا تحاول معارضتي!”|furious=غاضب بشدة، هائج؛ stupid=غبي؛ oppose=يعارض، يعترض على
+
+Adam attempted to take advantage of the situation.|حاول آدم الاستفادة من الموقف.|attempt=يحاول، يسعى؛ take advantage of=يستغل، يستفيد من
+He noticed a narrow gap in the factory wall and realized that he might escape through it.|لاحظ فجوة ضيقة في جدار المصنع وأدرك أنه قد يهرب منها.|notice=يلاحظ؛ gap=فجوة، ثغرة؛ wall=جدار
+However, he was determined to get rid of these criminals once and for all.|ومع ذلك كان مصمّمًا على التخلص من هؤلاء المجرمين مرة واحدة وإلى الأبد.|determined=مصمم، عازم؛ get rid of=يتخلص من؛ criminals=مجرمون؛ once and for all=مرة وإلى الأبد، نهائيًا
+
+In spite of the danger, he struggled to reach the opening.|رغم الخطر، كافح ليصل إلى الفتحة.|in spite of=رغم، بالرغم من؛ danger=خطر؛ opening=فتحة، مدخل
+The men chased him, and he had to scurry across the yard.|طاردوه، واضطر إلى الجري بسرعة عبر الساحة.|chase=يطارد؛ scurry=يهرول، يجري بسرعة؛ yard=ساحة، فناء
+By chance, an old security guard appeared and shouted for help.|وبالصدفة ظهر حارس أمن عجوز وصاح طالبًا النجدة.|by chance=بالصدفة؛ security guard=حارس أمن؛ shout for help=يصيح طالبًا النجدة
+The guard had witnessed many terrible events during his life.|كان الحارس قد شهد أحداثًا مروعة كثيرة خلال حياته.|terrible=مروّع، فظيع؛ events=أحداث
+He knew that violence could never solve anything.|كان يعرف أن العنف لا يمكن أن يحل أي شيء.|violence=عنف؛ solve=يحل
+He decided to put his courage into effect and protect the young man.|قرر أن يفعّل شجاعته ويحمي الشاب.|put into effect=يضع موضع التنفيذ، يفعّل؛ courage=شجاعة
+
+“Stop! Put that weapon down!” he ordered.|“توقف! ضع ذلك السلاح أرضًا!” أمر.|weapon=سلاح؛ order=يأمر
+To everyone’s surprise, the leader hesitated.|ولدهشة الجميع، تردّد الزعيم.|to everyone’s surprise=لدهشة الجميع
+The guard stared at him with a fierce expression.|حدّق الحارس فيه بنظرة شرسة.|stare=يحدّق، يحملق؛ fierce=شرس، حاد
+“Your conscience is still alive. You can choose to change before it’s too late.”|“ضميرك ما زال حيًّا. يمكنك أن تختار التغيير قبل فوات الأوان.”|too late=فات الأوان، متأخر جدًا؛ choose=يختار
+
+The leader looked away.|أشاح الزعيم ببصره.|look away=يشيح بنظره، يحوّل بصره
+For a moment, he seemed to remember something from his past.|للحظة، بدا أنه يتذكر شيئًا من ماضيه.|seem=يبدو
+Perhaps he was not completely without feelings.|ربما لم يكن بلا مشاعر تمامًا.|perhaps=ربما
+Perhaps he could still resist the hateful behavior he had adopted.|وربما كان ما زال بإمكانه مقاومة السلوك البغيض الذي تبنّاه.|adopt=يتبنى، يعتمد
+The police arrived shortly afterward.|وصلت الشرطة بعد ذلك بوقت قصير.|shortly afterward=بعد قليل، بعد ذلك بوقت قصير
+They forced the gang to surrender and implemented new security measures in the village.|أجبروا العصابة على الاستسلام ونفّذوا إجراءات أمنية جديدة في القرية.|gang=عصابة؛ security measures=إجراءات أمنية
+
+Adam was exhausted, but he was alive.|كان آدم منهكًا لكنه كان حيًّا.|exhausted=منهك، مستنفد القوى
+He looked at the setting sun and took a deep breath.|نظر إلى الشمس الغاربة وتنفّس بعمق.|setting sun=الشمس الغاربة؛ take a deep breath=يأخذ نفسًا عميقًا
+He had not won because he was stronger than everyone else.|لم ينتصر لأنه كان أقوى من الجميع.|won=انتصر، فاز (ماضي win)
+He had won because he refused to let fear control his life.|بل انتصر لأنه رفض أن يدع الخوف يتحكم في حياته.|
+His story soon attracted worldwide attention.|وسرعان ما جذبت قصته اهتمامًا عالميًا.|attract=يجذب؛ worldwide=عالمي، في أنحاء العالم؛ attention=اهتمام، انتباه
+People everywhere admired the young man who had stood against cruelty and refused to give up.|وأعجب الناس في كل مكان بالشاب الذي وقف ضد القسوة ورفض الاستسلام.|admire=يُعجب بـ، يقدّر؛ stand against=يقف ضد، يتصدى لـ؛ cruelty=قسوة، وحشية؛ give up=يستسلم، يتخلى`},
+{t:"The Power of Determination",x:`Adam was always itching to do something meaningful with his life.|كان آدم دائمًا متلهفًا لأن يفعل شيئًا ذا معنى في حياته.|
+He was full of enthusiasm and in high spirits whenever he thought about establishing his own business.|كان مليئًا بالحماس ومعنوياته مرتفعة كلما فكّر في تأسيس عمله الخاص.|enthusiasm=حماس، شغف؛ in high spirits=معنوياته مرتفعة، في مزاج مرح؛ establish=يؤسس، يُنشئ؛ business=عمل، مشروع تجاري
+However, he knew that success did not depend on enthusiasm alone.|ومع ذلك كان يعرف أن النجاح لا يعتمد على الحماس وحده.|depend on=يعتمد على
+It also required self-cultivation, patience, and careful thinking.|بل تطلّب أيضًا تهذيب النفس والصبر والتفكير المتأنّي.|self-cultivation=تهذيب النفس، تنمية الذات؛ careful thinking=تفكير متأنٍّ
+
+After graduating from university, Adam joined a small educational institution.|بعد تخرجه من الجامعة، التحق آدم بمؤسسة تعليمية صغيرة.|graduate=يتخرج؛ university=جامعة؛ educational=تعليمي؛ institution=مؤسسة، معهد
+He had to manage with a limited salary, and sometimes he could barely afford his daily expenses.|كان عليه أن يتدبّر أمره براتب محدود، وأحيانًا كان بالكاد يستطيع تحمّل مصاريفه اليومية.|manage=يتدبّر أمره، يُسيّر؛ limited=محدود؛ salary=راتب؛ barely=بالكاد؛ afford=يتحمّل تكلفة، يقدر ماديًّا؛ expenses=مصاريف، نفقات
+Nevertheless, he decided to rely on his abilities and draw support from his closest friends.|ومع ذلك قرر أن يعتمد على قدراته ويستمد الدعم من أقرب أصدقائه.|nevertheless=ومع ذلك، رغم ذلك؛ rely on=يعتمد على، يثق بـ؛ abilities=قدرات؛ draw support from=يستمد الدعم من
+
+One of them, Daniel, was a bosom friend who deeply appreciated Adam’s talents.|كان أحدهم، دانيال، صديقًا حميمًا يقدّر مواهب آدم بعمق.|bosom friend=صديق حميم، صديق مقرّب؛ appreciate=يقدّر، يثمّن؛ talents=مواهب
+Daniel always encouraged him and reminded him that lasting success required hard work.|كان دانيال يشجعه دائمًا ويذكّره بأن النجاح الدائم يتطلب العمل الجاد.|lasting=دائم، باقٍ، طويل الأمد
+“Admittedly, your financial situation is difficult,” Daniel said, “but you have the motivation and the determination to achieve something great.”|“صحيح أن وضعك المالي صعب،” قال دانيال، “لكن لديك الدافع والعزيمة لتحقيق شيء عظيم.”|admittedly=صحيح، لا بد من الاعتراف؛ financial=مالي؛ motivation=دافع، حافز؛ determination=عزيمة، إصرار؛ achieve=يحقق، ينجز
+
+Adam began to consider his options.|بدأ آدم يدرس خياراته.|consider=يفكر في، يدرس؛ options=خيارات
+He planned to set up an organization that would provide practical training for young people.|خطط لتأسيس منظمة تقدّم تدريبًا عمليًّا للشباب.|set up=يؤسس، يُنشئ؛ organization=منظمة، مؤسسة؛ provide=يقدّم، يوفّر؛ practical=عملي؛ training=تدريب
+His idea involved technology, education, and employment.|تضمنت فكرته التكنولوجيا والتعليم والتوظيف.|involve=يتضمن، يشمل؛ employment=توظيف، عمالة
+He wanted to create something that would match the needs of the community.|أراد أن يبتكر شيئًا يتوافق مع احتياجات المجتمع.|create=يبتكر، يُنشئ؛ match=يتوافق مع، يلائم؛ community=مجتمع
+
+At first, he had to work desperately to attract customers.|في البداية، كان عليه أن يعمل بيأس ليجذب الزبائن.|at first=في البداية؛ desperately=بيأس، بشدة، بلا حيلة
+He visited companies one after another, meeting clients and explaining his project.|زار الشركات واحدة تلو الأخرى، يقابل العملاء ويشرح مشروعه.|one after another=واحدًا تلو الآخر؛ clients=عملاء؛ explain=يشرح؛ project=مشروع
+His manner of speaking was sincere and earnest, and his confidence made a good impression.|كانت طريقة حديثه صادقة وجادّة، وتركت ثقته انطباعًا حسنًا.|manner=طريقة، أسلوب؛ earnest=جاد، مخلص؛ confidence=ثقة بالنفس؛ make a good impression=يترك انطباعًا حسنًا
+
+Some customers were disgusted by the high prices of other training centers, while others complained about the disadvantages of traditional education.|كان بعض الزبائن مشمئزين من الأسعار المرتفعة لمراكز التدريب الأخرى، بينما اشتكى آخرون من عيوب التعليم التقليدي.|disgusted=مشمئز، ممتعض؛ prices=أسعار؛ disadvantages=عيوب، سلبيات؛ traditional=تقليدي
+Adam listened carefully and tried to find a solution.|استمع آدم بعناية وحاول إيجاد حل.|solution=حل
+He knew that he had to restrain himself and exercise patience.|كان يعرف أنه عليه أن يكبح نفسه ويتحلى بالصبر.|exercise patience=يتحلى بالصبر، يمارس الصبر
+He could not force people to trust him immediately.|لم يكن بوسعه إجبار الناس على الثقة به فورًا.|trust=يثق بـ، ثقة؛ immediately=فورًا، على الفور
+Instead, he focused on improving his services and carrying out his plans.|بل ركّز على تحسين خدماته وتنفيذ خططه.|focus on=يركّز على؛ improve=يحسّن؛ services=خدمات؛ carry out=ينفّذ، يُنجز
+
+Months passed in a row, and his efforts gradually began to pay off.|مرّت الشهور تباعًا، وبدأت جهوده تؤتي ثمارها تدريجيًّا.|in a row=على التوالي، تباعًا؛ efforts=جهود؛ gradually=تدريجيًّا؛ pay off=يؤتي ثماره، يُجدي
+His first customer agreed to support the project.|وافق أول زبون له على دعم المشروع.|agree=يوافق
+Adam was so delighted that he celebrated with his friends.|كان آدم مسرورًا جدًّا لدرجة أنه احتفل مع أصدقائه.|delighted=مسرور جدًا، مبتهج؛ celebrate=يحتفل
+
+However, success brought new responsibilities.|ومع ذلك، جلب النجاح مسؤوليات جديدة.|
+The organization needed more employees, a larger office, and a better salary system.|احتاجت المنظمة إلى مزيد من الموظفين ومكتب أكبر ونظام رواتب أفضل.|office=مكتب؛ system=نظام
+Adam had to balance the company’s expenses and income.|كان على آدم أن يوازن بين مصاريف الشركة ودخلها.|balance=يوازن؛ income=دخل، إيرادات
+He also had to weigh every decision carefully.|وكان عليه أيضًا أن يزن كل قرار بعناية.|weigh=يزن، يقيّم؛ decision=قرار
+“What should we do next?” Daniel asked.|“ماذا ينبغي أن نفعل بعد ذلك؟” سأل دانيال.|
+“We need to reverse our old strategy,” Adam replied.|“نحتاج إلى عكس استراتيجيتنا القديمة،” ردّ آدم.|reverse=يعكس، يقلب؛ strategy=استراتيجية
+“We should put our customers first and place quality above profit.”|“ينبغي أن نضع زبائننا أولًا ونجعل الجودة فوق الربح.”|put first=يضع في المقام الأول؛ quality=جودة؛ profit=ربح
+The new strategy worked. The organization grew, and its reputation became stronger.|نجحت الاستراتيجية الجديدة. نمت المنظمة وازدادت سمعتها قوة.|work=ينجح، يُجدي؛ grow=ينمو
+Adam was finally able to establish a lasting business.|وأخيرًا تمكّن آدم من تأسيس عمل دائم.|
+
+One day, an unexpected problem threatened to make everything collapse.|في يوم ما، هدّدت مشكلة غير متوقعة بجعل كل شيء ينهار.|threaten=يهدّد؛ collapse=ينهار، يسقط
+A financial disagreement between two partners caused the project to fall apart temporarily.|تسبب خلاف مالي بين شريكين في تفكك المشروع مؤقتًا.|disagreement=خلاف، اختلاف؛ partners=شركاء؛ fall apart=يتفكك، ينهار؛ temporarily=مؤقتًا
+Adam felt disgusted and frustrated, but he remained resolute and decisive.|شعر آدم بالاشمئزاز والإحباط، لكنه ظل حازمًا وحاسمًا.|frustrated=محبط، ممتعض؛ resolute=حازم، عازم؛ decisive=حاسم، قاطع
+He did not allow the situation to destroy his dreams.|لم يسمح للموقف بأن يدمّر أحلامه.|allow=يسمح
+He examined every drawback, considered what had gone wrong, and took firm and decisive action to solve the problem.|فحص كل عيب، وفكّر فيما سار على نحو خاطئ، واتخذ إجراءً حازمًا وحاسمًا لحل المشكلة.|examine=يفحص، يدرس؛ drawback=عيب، سلبية؛ go wrong=يسير على نحو خاطئ؛ firm=حازم، ثابت؛ action=إجراء، فعل
+His patience eased the tension, and his sincere manner softened the disagreement.|خفّف صبره التوتر، وليّنت طريقته الصادقة الخلاف.|ease=يخفّف، يهدّئ؛ tension=توتر؛ soften=يلين، يخفّف
+Eventually, the partners reached an agreement.|وفي النهاية، توصّل الشركاء إلى اتفاق.|reach an agreement=يتوصل إلى اتفاق
+
+Years later, Adam went on a special trip to visit the first institution where he had worked.|بعد سنوات، قام آدم برحلة خاصة لزيارة أول مؤسسة عمل فيها.|go on a trip=يقوم برحلة؛ special=خاص، مميز
+He remembered how difficult life had been and how much he had learned.|تذكّر مدى صعوبة الحياة وكم تعلّم.|
+He smiled as he thought about the journey.|ابتسم وهو يفكر في الرحلة.|journey=رحلة
+His success was nothing more than the result of determination, hard work, and the support of people who believed in him.|لم يكن نجاحه سوى نتيجة للعزيمة والعمل الجاد ودعم من آمنوا به.|nothing more than=لا شيء سوى، ليس أكثر من؛ result=نتيجة، محصلة؛ believe in=يؤمن بـ، يثق بـ
+He had learned that money could be earned, but self-cultivation, sincere friendship, and lasting motivation were much more valuable.|تعلّم أن المال يمكن كسبه، لكن تهذيب النفس والصداقة الصادقة والدافع الدائم أثمن بكثير.|valuable=ثمين، ذو قيمة
+And he enjoyed remembering those early days with relish and keen pleasure.|واستمتع بتذكّر تلك الأيام الأولى بتلذّذ ومتعة عميقة.|relish=تلذذ، استمتاع، شغف؛ keen=شديد، عميق، حاد؛ pleasure=متعة، سرور`},
+{t:"The Road to Leadership",x:`When Michael took office as the new manager of a large international company, he knew that the position would not be easy.|عندما تولّى مايكل منصبه مديرًا جديدًا لشركة دولية كبيرة، كان يعرف أن المنصب لن يكون سهلًا.|take office=يتولى المنصب؛ international=دولي، عالمي؛ position=منصب، وظيفة
+Although he was relatively young, he had spent several years working under senior and veteran employees who had taught him valuable skills and techniques.|ومع أنه كان شابًا نسبيًا، فقد أمضى سنوات عدة يعمل تحت إشراف موظفين كبار ومخضرمين علّموه مهارات وأساليب قيّمة.|relatively=نسبيًا؛ senior=كبير، أقدم رتبة؛ veteran=مخضرم، ذو خبرة طويلة؛ skills=مهارات؛ techniques=أساليب، تقنيات
+
+The company had originally been founded twenty years earlier by two business partners.|كانت الشركة قد أُسست في الأصل قبل عشرين عامًا على يد شريكين تجاريين.|originally=في الأصل، أصلًا؛ founded=أُسّست، تأسست
+At the beginning, it had only five employees, but it gradually grew into a successful organization with branches in several countries.|في البداية كان فيها خمسة موظفين فقط، لكنها نمت تدريجيًا إلى مؤسسة ناجحة لها فروع في عدة دول.|at the beginning=في البداية؛ branches=فروع؛ several=عدة، عدد من
+
+Michael’s first responsibility was to understand the general mood and atmosphere of the workplace.|كانت أولى مسؤوليات مايكل فهم المزاج العام وأجواء مكان العمل.|general=عام؛ mood=مزاج، حالة نفسية؛ atmosphere=أجواء، جوّ
+He noticed that some employees were busy all day long, while others seemed to do their jobs half-heartedly.|لاحظ أن بعض الموظفين منشغلون طوال اليوم، بينما بدا أن آخرين يؤدون عملهم دون حماس.|all day long=طوال اليوم؛ half-heartedly=بفتور، دون حماس حقيقي
+A few even tried to sneak off before working hours ended.|وحتى إن بعضهم حاول التسلل خارجًا قبل انتهاء ساعات العمل.|sneak off=يتسلل خارجًا، ينسلّ هاربًا؛ working hours=ساعات العمل
+“Is this the standard we expect from our employees?” he asked himself with a sigh.|“هل هذا هو المستوى الذي نتوقعه من موظفينا؟” سأل نفسه بتنهيدة.|standard=مستوى، معيار؛ expect=يتوقع؛ sigh=تنهيدة، يتنهد
+
+One senior employee, Mr. Brown, had a meaningful glance with Michael.|تبادل أحد كبار الموظفين، السيد براون، نظرة ذات مغزى مع مايكل.|glance=نظرة سريعة، لمحة
+It was almost like a wink, as if he wanted to tell him something without speaking.|كانت أشبه بغمزة، كأنه يريد أن يخبره بشيء دون كلام.|wink=غمزة، يغمز
+Mr. Brown explained that the previous manager had often bullied junior employees and treated them unfairly.|شرح السيد براون أن المدير السابق كان يتنمّر كثيرًا على صغار الموظفين ويعاملهم بظلم.|previous=سابق؛ bully=يتنمر على، يضطهد؛ junior=مبتدئ، أدنى رتبة؛ unfairly=بظلم، بلا إنصاف
+Some workers were constantly complained about, while others were praised regardless of their actual performance.|كان بعض العمال يُشتكى منهم باستمرار، بينما كان آخرون يُمدحون بغض النظر عن أدائهم الفعلي.|constantly=باستمرار، دائمًا؛ praised=يُمدَح، يُثنى عليه؛ regardless of=بغض النظر عن؛ actual=فعلي، حقيقي
+
+Michael considered this unreasonable and absurd.|رأى مايكل أن هذا غير معقول ومناقض للمنطق.|unreasonable=غير معقول؛ absurd=سخيف، عبثي
+Obviously, a successful company needed fairness and justice.|من الواضح أن الشركة الناجحة تحتاج إلى العدل والإنصاف.|obviously=من الواضح، بداهةً؛ fairness=إنصاف، عدالة؛ justice=عدل
+Employees should be evaluated according to clear targets, performance indicators, and professional standards, not personal relationships.|ينبغي تقييم الموظفين وفق أهداف واضحة ومؤشرات أداء ومعايير مهنية، لا علاقات شخصية.|evaluated=يُقيَّم؛ according to=وفقًا لـ؛ targets=أهداف، مستهدفات؛ indicators=مؤشرات؛ professional=مهني، احترافي؛ personal=شخصي
+At the worst, he thought, the company might lose its most talented people if this atmosphere continued.|فكّر أنه في أسوأ الأحوال قد تخسر الشركة أكثر موظفيها موهبة إن استمر هذا الجو.|at the worst=في أسوأ الأحوال؛ talented=موهوب؛ continued=استمر
+
+Michael decided to go all out to improve the workplace.|قرر مايكل أن يبذل أقصى جهده لتحسين مكان العمل.|go all out=يبذل أقصى جهد، يُسخّر كل طاقته
+He promised to spare no effort in creating a fair system.|وعد بألا يدخر جهدًا في إنشاء نظام عادل.|spare no effort=لا يدخر جهدًا؛ fair=عادل، منصف
+He would keep account of every employee’s achievements and evaluate their performance regularly.|سيتتبع إنجازات كل موظف ويقيّم أداءه بانتظام.|keep account of=يتتبع، يحتفظ بسجل لـ؛ regularly=بانتظام
+
+However, he understood that leadership was not about showing authority or boasting about one’s talent.|غير أنه أدرك أن القيادة ليست إظهار السلطة أو التباهي بالموهبة.|authority=سلطة، نفوذ؛ boasting=يتباهى، يفاخر
+It was about helping others develop their abilities.|بل هي مساعدة الآخرين على تطوير قدراتهم.|develop=يطوّر، ينمّي
+He refused to slight or cold-shoulder anyone.|رفض أن يستخف بأحد أو يعامله ببرود.|slight=يستخف بـ، يزدري؛ cold-shoulder=يعامل ببرود، يتجاهل عمدًا
+Even when employees made mistakes, he preferred to teach them rather than bully them.|حتى حين أخطأ الموظفون، فضّل تعليمهم بدلًا من التنمر عليهم.|rather than=بدلًا من، عوضًا عن
+
+Some supervisors, however, were perfunctory in their duties.|بعض المشرفين، مع ذلك، كانوا سطحيين في أداء واجباتهم.|supervisors=مشرفون؛ perfunctory=شكلي، سطحي، من باب الواجب؛ duties=واجبات، مهام
+They would slight over important details and make do with incomplete reports.|كانوا يتجاوزون التفاصيل المهمة ويكتفون بتقارير ناقصة.|slight over=يتجاوز بإهمال، يمرّ مرور الكرام؛ details=تفاصيل؛ make do with=يكتفي بـ، يتدبر بما هو متاح؛ incomplete=ناقص، غير مكتمل؛ reports=تقارير
+Michael warned them that such behavior would not be accepted.|حذّرهم مايكل من أن هذا السلوك لن يُقبل.|warned=حذّر؛ accepted=يُقبل
+
+He encouraged every department to try every means possible to improve productivity and do everything possible to achieve its annual targets.|شجّع كل قسم على بذل كل وسيلة ممكنة لتحسين الإنتاجية وفعل كل ما هو ممكن لتحقيق أهدافه السنوية.|department=قسم، إدارة؛ try every means=يجرّب كل الوسائل؛ productivity=إنتاجية؛ annual=سنوي
+He also introduced training sessions to put employees’ talents to good use and give full play to their abilities.|كما أدخل جلسات تدريبية للاستفادة من مواهب الموظفين وإطلاق العنان لقدراتهم.|introduce=يقدّم، يُدخل؛ sessions=جلسات؛ put to good use=يستفيد من، يوظّف جيدًا؛ give full play to=يطلق العنان لـ، يستثمر بالكامل
+
+One day, a serious problem appeared.|في يوم ما، ظهرت مشكلة خطيرة.|serious=خطير، جاد
+A major business partner complained that the company had failed to deliver an important order on time.|اشتكى شريك تجاري رئيسي من أن الشركة أخفقت في تسليم طلب مهم في موعده.|major=رئيسي، كبير؛ deliver=يسلّم، يوصّل؛ order=طلبية، طلب؛ on time=في الموعد، في الوقت المحدد
+Michael immediately checked the records and discovered that one department had neglected its responsibilities.|فحص مايكل السجلات فورًا واكتشف أن أحد الأقسام قد أهمل مسؤولياته.|checked=فحص، تحقّق؛ records=سجلات
+
+He did not leap to conclusions.|لم يتسرّع في استخلاص النتائج.|leap to conclusions=يقفز إلى الاستنتاجات، يتسرع في الحكم
+Instead, he carefully examined the situation and listened to both sides.|بل فحص الموقف بعناية واستمع إلى الطرفين.|both sides=الطرفان، كلا الجانبين
+His cautious and conscientious personality helped him find the real cause of the problem.|ساعدته شخصيته الحذرة والمدقِّقة على إيجاد السبب الحقيقي للمشكلة.|cautious=حذر، متحفظ؛ conscientious=دقيق، ضميري، مخلص في عمله؛ cause=سبب
+
+He worked passionately to solve it, dedicating himself to work even during the busiest hours.|عمل بشغف لحلها، مكرِّسًا نفسه للعمل حتى في أكثر الساعات انشغالًا.|passionately=بشغف، بحماس شديد؛ dedicating himself to=يكرّس نفسه لـ، يتفانى في
+His employees were surprised to see their manager making tea and coffee for the exhausted team, filling the office with a warmer atmosphere.|دُهش موظفوه لرؤية مديرهم يُعدّ الشاي والقهوة للفريق المنهك، مما ملأ المكتب بجوّ أدفأ.|surprised=مندهش، متفاجئ
+“Leadership is not a title,” he told them. “It is a responsibility.”|“القيادة ليست لقبًا،” قال لهم. “إنها مسؤولية.”|title=لقب، مسمّى وظيفي
+
+After several months, the company’s performance improved significantly.|بعد عدة أشهر، تحسّن أداء الشركة بشكل ملحوظ.|significantly=بشكل ملحوظ، بدرجة كبيرة
+Employees began to trust one another, and the general atmosphere became much healthier.|بدأ الموظفون يثقون ببعضهم، وصار الجو العام أكثر صحة بكثير.|healthier=أكثر صحة، أسلم
+At the end of the year, the board evaluated Michael’s performance.|في نهاية العام، قيّم مجلس الإدارة أداء مايكل.|board=مجلس الإدارة
+His achievements exceeded the expected norms and targets.|تجاوزت إنجازاته المعايير والأهداف المتوقعة.|exceeded=تجاوز، فاق؛ norms=معايير، أعراف
+He had not only improved productivity but also established a culture of fairness and cooperation.|لم يحسّن الإنتاجية فحسب، بل أسس أيضًا ثقافة من العدل والتعاون.|culture=ثقافة؛ cooperation=تعاون
+The board decided to promote him to a higher position.|قرر مجلس الإدارة ترقيته إلى منصب أعلى.|promote=يرقّي، يروّج
+
+When Michael assumed office as the company’s regional director, he remembered the veteran employees who had taught him everything.|عندما تولّى مايكل منصب المدير الإقليمي للشركة، تذكّر الموظفين المخضرمين الذين علّموه كل شيء.|assumed office=تولّى المنصب؛ regional=إقليمي؛ director=مدير
+He knew that his success was not his achievement alone.|كان يعرف أن نجاحه ليس إنجازه وحده.|
+He decided to repay their kindness by giving young employees the same opportunities he had once received.|قرر أن يردّ جميلهم بمنح الموظفين الشباب الفرص نفسها التي نالها يومًا.|repay=يردّ (الجميل)، يسدّد؛ opportunities=فرص
+His story proved that true leadership required passion, talent, justice, and the ability to put people first.|أثبتت قصته أن القيادة الحقيقية تتطلب الشغف والموهبة والعدل والقدرة على وضع الناس أولًا.|passion=شغف، حماس عارم`},
+{t:"A Decision That Changed Everything",x:`Daniel had always been good at making decisions.|كان دانيال دائمًا بارعًا في اتخاذ القرارات.|good at=بارع في، ماهر في
+He was a wise and brilliant young man who believed that everyone should have the courage to make their own choices.|كان شابًا حكيمًا ولامعًا يؤمن بأن على كل إنسان أن يمتلك الشجاعة ليتخذ اختياراته بنفسه.|wise=حكيم، عاقل؛ brilliant=لامع، عبقري؛ choices=اختيارات
+However, he had one weakness: he was sometimes irritable, impatient, and easily worried about the future.|ومع ذلك كانت لديه نقطة ضعف واحدة: كان أحيانًا سريع الانفعال وقليل الصبر ويقلق بسهولة على المستقبل.|weakness=نقطة ضعف؛ irritable=سريع الانفعال، عصبي؛ impatient=نافد الصبر؛ worried=قلق
+
+After graduating from university, Daniel found employment at a finance and banking company.|بعد تخرجه من الجامعة، وجد دانيال عملًا في شركة تمويل وبنوك.|finance=تمويل، مالية؛ banking=عمل مصرفي، بنوك
+He was an expert in financial analysis and was particularly good at calculating costs, predicting risks, and making accurate reports.|كان خبيرًا في التحليل المالي وبارعًا خصوصًا في حساب التكاليف والتنبؤ بالمخاطر وإعداد تقارير دقيقة.|expert=خبير؛ analysis=تحليل؛ particularly=خصوصًا، على وجه الخصوص؛ calculating=يحسب؛ costs=تكاليف؛ predicting=يتنبأ بـ؛ risks=مخاطر؛ accurate=دقيق
+His manager often said, “Daniel has a sharp mind and an inborn talent for business. He is exactly the kind of employee this company needs.”|كان مديره يقول كثيرًا: “لدى دانيال عقل حاد وموهبة فطرية في الأعمال. إنه بالضبط نوع الموظف الذي تحتاجه هذه الشركة.”|inborn=فطري، موروث؛ exactly=بالضبط، تمامًا
+
+But Daniel’s job was not always interesting.|لكن وظيفة دانيال لم تكن ممتعة دائمًا.|interesting=ممتع، مثير للاهتمام
+Some tasks were dull and repetitive, while others caused him enough headaches to make him question his career choice.|كانت بعض المهام مملة ومتكررة، بينما سببت له أخرى من الصداع ما يكفي ليشكك في اختياره لمهنته.|tasks=مهام؛ dull=ممل، رتيب؛ repetitive=متكرر؛ headaches=صداع، متاعب؛ question=يشكك في، يتساءل عن؛ career=مهنة، مسار وظيفي
+Besides his daily responsibilities, he had to deal with excessive workloads and constant pressure.|إلى جانب مسؤولياته اليومية، كان عليه التعامل مع أعباء عمل مفرطة وضغط مستمر.|besides=إلى جانب، فضلًا عن؛ deal with=يتعامل مع؛ excessive=مفرط، زائد عن الحد؛ workloads=أعباء العمل؛ constant=مستمر، دائم؛ pressure=ضغط
+He sometimes had misgivings about his future.|كانت تراوده أحيانًا مخاوف وشكوك حيال مستقبله.|misgivings=مخاوف، شكوك، توجّس
+He feared that he might spend his entire lifetime working for a company without achieving anything meaningful of his own.|خشي أن يقضي حياته كلها يعمل لدى شركة دون أن يحقق شيئًا ذا معنى لنفسه.|feared=يخشى؛ entire=كامل، بأكمله؛ lifetime=عمر، مدى الحياة
+
+One day, a financial crisis struck the company.|في يوم ما، ضربت أزمة مالية الشركة.|crisis=أزمة؛ struck=ضرب، أصاب
+It began to suffer losses, and its profits decreased day by day.|بدأت تتكبد خسائر، وتراجعت أرباحها يومًا بعد يوم.|losses=خسائر؛ decreased=تناقص، انخفض؛ day by day=يومًا بعد يوم
+Consequently, the company was no longer able to operate as efficiently as before.|ونتيجة لذلك، لم تعد الشركة قادرة على العمل بكفاءة كما كانت.|consequently=نتيجة لذلك، بالتالي؛ no longer=لم يعد؛ operate=يعمل، يُشغّل؛ efficiently=بكفاءة
+The management tried to reduce costs, but the situation continued to deteriorate.|حاولت الإدارة خفض التكاليف، لكن الوضع استمر في التدهور.|management=الإدارة؛ reduce=يخفض، يقلل؛ deteriorate=يتدهور، يسوء
+Eventually, the company had to lay off several employees.|وفي النهاية، اضطرت الشركة إلى تسريح عدة موظفين.|lay off=يسرّح، يفصل من العمل
+Everyone feared that it might go bankrupt and close down completely.|خشي الجميع أن تفلس وتُغلق تمامًا.|go bankrupt=يفلس؛ close down=يُغلق نهائيًا
+
+Daniel was deeply affected by the news.|تأثر دانيال بعمق بالخبر.|affected=متأثر
+He remembered the bygone days when the company had been successful and its employees had enjoyed stable jobs.|تذكّر الأيام الغابرة حين كانت الشركة ناجحة وتمتع موظفوها بوظائف مستقرة.|bygone=غابر، ماضٍ؛ stable=مستقر، ثابت
+He began to consider making a strategic decision.|بدأ يفكر في اتخاذ قرار استراتيجي.|strategic=استراتيجي
+Instead of waiting for the situation to improve, he decided to establish a small financial consulting business of his own.|بدل انتظار تحسّن الوضع، قرر تأسيس مشروع صغير للاستشارات المالية خاص به.|consulting=استشاري، استشارات
+
+His family worried about the cost and the possibility of failure.|قلقت عائلته من التكلفة ومن احتمال الفشل.|possibility=احتمال، إمكانية؛ failure=فشل
+His father reminded him that setbacks and defeats were part of life.|ذكّره أبوه بأن النكسات والهزائم جزء من الحياة.|setbacks=نكسات، عقبات؛ defeats=هزائم
+“Success is not simply about making a profit,” his father explained.|“النجاح ليس مجرد تحقيق ربح،” شرح أبوه.|simply=ببساطة، مجرد
+“It also means having the willpower to face difficulties and the courage to continue when things go wrong.”|“بل يعني أيضًا امتلاك قوة الإرادة لمواجهة الصعاب والشجاعة للاستمرار حين تسوء الأمور.”|willpower=قوة الإرادة، عزيمة؛ face=يواجه
+
+Daniel deeply regretted the years he had spent doubting himself.|ندم دانيال بشدة على السنوات التي قضاها يشكك في نفسه.|regretted=ندم على؛ doubting=يشك في
+He realized that fear should not determine his future.|أدرك أن الخوف لا ينبغي أن يحدد مستقبله.|determine=يحدد، يقرر
+He was brave enough to take the risk, although he knew that starting a business would not be easy.|كان شجاعًا بما يكفي ليخوض المخاطرة، مع أنه عرف أن بدء عمل تجاري لن يكون سهلًا.|brave=شجاع؛ take the risk=يخوض المخاطرة، يجازف
+He decided to accompany his former colleague, Sarah, who was an expert in marketing and business development.|قرر أن يصاحب زميلته السابقة سارة، وهي خبيرة في التسويق وتطوير الأعمال.|accompany=يرافق، يصاحب؛ marketing=تسويق
+
+Their first challenge was to find a suitable market.|كان تحدّيهما الأول إيجاد سوق مناسبة.|challenge=تحدٍّ؛ suitable=مناسب، ملائم؛ market=سوق
+They discovered that financial consulting services were in hot demand, particularly among small businesses struggling to survive.|اكتشفا أن خدمات الاستشارات المالية عليها طلب كبير، خصوصًا بين المشاريع الصغيرة التي تكافح من أجل البقاء.|in hot demand=عليه طلب كبير؛ survive=ينجو، يبقى على قيد الحياة
+Many companies were striving to be the first in their industries, competing with each other for the lead.|كانت شركات كثيرة تسعى جاهدة لتكون الأولى في مجالاتها، وتتنافس فيما بينها على الصدارة.|striving=يسعى جاهدًا؛ industries=صناعات، قطاعات؛ competing=ينافس؛ the lead=الصدارة، الريادة
+Daniel and Sarah understood that they needed a grand and impressive strategy to stand out.|أدرك دانيال وسارة أنهما بحاجة إلى استراتيجية عظيمة ومبهرة ليتميّزا.|grand=عظيم، فخم؛ stand out=يتميز، يبرز
+They worked day and night to develop a service that was after their hearts: honest, affordable, and useful to their clients.|عملا ليل نهار لتطوير خدمة تتوافق مع قلبيهما: صادقة وبأسعار معقولة ومفيدة لعملائهما.|day and night=ليل نهار؛ after one’s heart=يوافق هواه، يرضي قلبه؛ affordable=بسعر معقول، في المتناول
+
+As soon as possible, they registered their business and began looking for customers.|في أسرع وقت ممكن، سجّلا عملهما وبدآ البحث عن زبائن.|as soon as possible=في أسرع وقت ممكن؛ registered=سجّل
+Their first few months were difficult, but they gradually attracted more clients.|كانت أشهرهما الأولى صعبة، لكنهما جذبا تدريجيًّا مزيدًا من العملاء.|
+Their business began to make a profit.|بدأ عملهما يحقق ربحًا.|
+It was finally running smoothly, and their confidence increased day by day.|وأخيرًا صار يسير بسلاسة، وازدادت ثقتهما يومًا بعد يوم.|running smoothly=يسير بسلاسة
+
+Daniel learned that being similar to successful people did not mean copying everything they did.|تعلّم دانيال أن مشابهة الناجحين لا تعني نسخ كل ما يفعلونه.|similar to=مشابه لـ؛ copying=ينسخ، يقلّد
+He had to understand what worked for his own business and what did not.|كان عليه أن يفهم ما ينفع عمله الخاص وما لا ينفعه.|
+He also learned that opportunity and luck were important, but they were not enough without effort.|وتعلّم أيضًا أن الفرصة والحظ مهمان، لكنهما لا يكفيان دون جهد.|luck=حظ
+Besides knowledge and experience, a person needed a strong heart, soul, and willpower.|إلى جانب المعرفة والخبرة، يحتاج المرء قلبًا قويًّا وروحًا وإرادة.|knowledge=معرفة؛ soul=روح
+
+Years later, Daniel looked back on his journey with pride.|بعد سنوات، نظر دانيال إلى رحلته بفخر.|look back on=ينظر إلى الماضي، يستعرض ذكرياته عن؛ pride=فخر
+He understood that the crisis that had once frightened him had actually led him to a better future.|أدرك أن الأزمة التي أفزعته يومًا قادته في الحقيقة إلى مستقبل أفضل.|actually=في الحقيقة، فعلًا
+He had become immune to many of the fears that once controlled him.|صار محصّنًا ضد كثير من المخاوف التي كانت تسيطر عليه يومًا.|immune to=محصّن ضد، منيع أمام
+Most importantly, he had learned to make his own decisions before it was too late.|والأهم من ذلك أنه تعلّم أن يتخذ قراراته بنفسه قبل فوات الأوان.|most importantly=والأهم من ذلك`},
+{t:"A Life Beyond Imagination",x:`It was a cold winter morning when Dr. Adam received an urgent call from the central hospital.|كان صباح شتاء بارد حين تلقى الدكتور آدم اتصالًا عاجلًا من المستشفى المركزي.|urgent=عاجل، ملحّ؛ central=مركزي؛ hospital=مستشفى
+A baby had been brought in after an earth-shaking accident that had left his parents seriously injured.|أُحضر طفل رضيع بعد حادث مدوٍّ هزّ الأرض ترك والديه مصابين إصابة خطيرة.|earth-shaking=مدوٍّ، هزّ الأرض، فادح؛ accident=حادث؛ injured=مصاب
+The infant was alive, but his condition was extremely dangerous.|كان الرضيع حيًّا لكن حالته كانت بالغة الخطورة.|infant=رضيع، طفل صغير؛ condition=حالة
+
+When Adam arrived, he noticed a strange scar on the baby’s face.|عندما وصل آدم، لاحظ ندبة غريبة على وجه الرضيع.|scar=ندبة، أثر جرح
+The medical team explained that the child had fallen from a considerable height during the accident.|شرح الفريق الطبي أن الطفل سقط من ارتفاع كبير أثناء الحادث.|medical=طبي؛ team=فريق؛ considerable=كبير، ملحوظ؛ height=ارتفاع
+Fortunately, his brain had not suffered severe damage.|لحسن الحظ، لم يتعرض دماغه لضرر شديد.|fortunately=لحسن الحظ؛ brain=دماغ؛ damage=ضرر، تلف
+
+However, the accident had caused serious injuries to his lungs and several other organs.|ومع ذلك تسبب الحادث بإصابات خطيرة في رئتيه وعدة أعضاء أخرى.|injuries=إصابات؛ lungs=رئتان؛ organs=أعضاء
+The doctors were certain that the baby needed an unprecedented medical procedure if he was going to survive.|كان الأطباء متأكدين من أن الرضيع يحتاج إلى إجراء طبي غير مسبوق إن أراد النجاة.|certain=متأكد؛ unprecedented=غير مسبوق؛ procedure=إجراء، عملية
+
+Adam began to expound his medical theory to the team.|بدأ آدم يشرح نظريته الطبية للفريق بالتفصيل.|expound=يشرح بالتفصيل، يفسّر؛ theory=نظرية
+He explained that the human body possessed an intrinsic ability to regenerate and renew damaged tissues, although this ability was limited.|شرح أن جسم الإنسان يمتلك قدرة جوهرية على تجديد الأنسجة التالفة وتعويضها، مع أن هذه القدرة محدودة.|possessed=يمتلك؛ intrinsic=جوهري، متأصل؛ regenerate=يجدد، يعيد النمو؛ renew=يجدد؛ tissues=أنسجة
+“Think of the body as a living machine,” he said.|“فكّروا في الجسم كآلة حية،” قال.|machine=آلة
+“Just as an apparatus can sometimes be repaired, certain organs can recover when they receive the right treatment.”|“كما يمكن أحيانًا إصلاح جهاز، يمكن لبعض الأعضاء أن تتعافى حين تتلقى العلاج المناسب.”|apparatus=جهاز، أداة؛ repaired=يُصلَح؛ recover=يتعافى؛ treatment=علاج
+
+He used this analogy to explain his opinion and understanding of the case.|استخدم هذا التشبيه ليشرح رأيه وفهمه للحالة.|analogy=تشبيه، قياس تمثيلي؛ opinion=رأي؛ case=حالة
+Then he set forth a brand-new treatment plan.|ثم عرض خطة علاج جديدة كليًّا.|set forth=يعرض، يطرح؛ brand-new=جديد كليًّا
+Some doctors disagreed.|اعترض بعض الأطباء.|disagreed=يختلف، يعترض
+Each aired his or her own views, and the discussion became increasingly serious.|أعلن كل منهم وجهة نظره، وأصبح النقاش أكثر جدية باستمرار.|aired=يعلن، يعبّر عن (آراءه)؛ views=وجهات نظر؛ increasingly=على نحو متزايد
+One specialist conjectured that the baby might never regain consciousness if the operation failed.|خمّن أحد المتخصصين أن الرضيع قد لا يستعيد وعيه أبدًا إن فشلت العملية.|specialist=متخصص، أخصائي؛ conjectured=خمّن، افترض؛ regain=يستعيد؛ consciousness=وعي؛ operation=عملية جراحية
+
+Adam listened carefully.|استمع آدم بعناية.|
+He knew that medical decisions should not be based on guesses alone.|كان يعرف أن القرارات الطبية لا ينبغي أن تقوم على التخمين وحده.|based on=يقوم على؛ guesses=تخمينات
+He had to think deeply, ponder every possibility, and infer the most likely outcome from the available evidence.|كان عليه أن يفكر بعمق ويتأمل كل احتمال ويستنتج النتيجة الأرجح من الأدلة المتاحة.|ponder=يتأمل، يمعن التفكير؛ infer=يستنتج؛ outcome=نتيجة؛ available=متاح
+“For example,” he explained, “we must consider how the lungs function and whether the damaged tissues can be transported or grafted safely.”|“على سبيل المثال،” شرح، “علينا أن ندرس كيف تعمل الرئتان وهل يمكن نقل الأنسجة التالفة أو ترقيعها بأمان.”|for example=على سبيل المثال؛ function=يعمل، يؤدي وظيفته؛ transported=ينقل؛ grafted=يُطعَّم، يُزرع (نسيج/عضو)
+
+The operation was extremely complicated.|كانت العملية بالغة التعقيد.|complicated=معقّد
+It involved an organ graft and a special apparatus designed to support the baby’s breathing.|تضمنت زراعة عضو وجهازًا خاصًّا صُمّم لدعم تنفّس الرضيع.|designed=مصمَّم؛ breathing=تنفّس
+Meanwhile, the child’s parents were waiting outside the operating room.|في الأثناء، كان والدا الطفل ينتظران خارج غرفة العمليات.|operating room=غرفة العمليات
+His mother appeared melancholy and heavy-hearted.|بدت أمه كئيبة وثقيلة القلب.|melancholy=كئيب، حزين؛ heavy-hearted=مثقل القلب، حزين
+She kept imagining a future in which her little boy would never return to her arms.|ظلّت تتخيل مستقبلًا لن يعود فيه ابنها الصغير إلى أحضانها.|imagining=يتخيل؛ arms=أحضان، ذراعان
+Adam approached her and tried to reassure her.|اقترب منها آدم وحاول طمأنتها.|reassure=يطمئن، يهدّئ
+“Your son is fighting for his life,” he said. “We will do everything possible.”|“ابنك يقاتل من أجل حياته،” قال. “سنفعل كل ما هو ممكن.”|fighting for his life=يقاتل من أجل حياته
+
+After several hours, the operation was completed.|بعد عدة ساعات، اكتملت العملية.|completed=اكتملت
+The baby remained unconscious for a while, and the doctors feared that he might be in a coma.|بقي الرضيع فاقدًا للوعي بعض الوقت، وخشي الأطباء أن يكون في غيبوبة.|unconscious=فاقد الوعي؛ for a while=لبعض الوقت؛ coma=غيبوبة
+Then, unexpectedly, his fingers moved.|ثم، وعلى غير توقع، تحركت أصابعه.|fingers=أصابع
+A few moments later, he began to regain consciousness and slowly opened his eyes.|وبعد لحظات قليلة بدأ يستعيد وعيه وفتح عينيه ببطء.|a few moments later=بعد لحظات قليلة
+His mother rushed toward him, overwhelmed with joy.|اندفعت أمه نحوه وقد غمرتها الفرحة.|rushed=يندفع، يهرع؛ overwhelmed=غامر، مغمور
+She looked at his tiny face and familiar features, noticing that even the smallest expression reminded her of the child she loved.|نظرت إلى وجهه الصغير جدًّا وملامحه المألوفة، وأدركت أن أصغر تعبير فيه يذكّرها بالطفل الذي أحبّته.|tiny=صغير جدًّا؛ features=ملامح؛ reminded=يذكّر
+
+The medical achievement attracted tremendous attention.|جذب هذا الإنجاز الطبي اهتمامًا هائلًا.|tremendous=هائل، ضخم
+News of the unprecedented operation spread to distant countries, and specialists from around the world wanted to understand how the procedure had been performed.|انتشر خبر العملية غير المسبوقة في بلدان بعيدة، وأراد متخصصون من أنحاء العالم فهم كيف أُجريت.|spread=ينتشر؛ distant=بعيد؛ performed=يُجري، يؤدي
+Some journalists began to imagine its possible effects on the future of medicine.|بدأ بعض الصحفيين يتخيلون آثارها المحتملة في مستقبل الطب.|journalists=صحفيون؛ effects=آثار، تأثيرات؛ medicine=الطب
+Others wrote speeches and public opinions about the ethical questions involved.|وكتب آخرون خطبًا ومقالات رأي عامة عن الأسئلة الأخلاقية المرتبطة.|speeches=خطابات؛ public=عام، جماهيري؛ ethical=أخلاقي
+A famous professor argued that medical progress should never be separated from moral responsibility.|رأى أستاذ مشهور أن التقدم الطبي يجب ألا ينفصل أبدًا عن المسؤولية الأخلاقية.|professor=أستاذ جامعي؛ argued=يجادل، يرى؛ progress=تقدم؛ moral=أخلاقي، معنوي
+His theory was that science should protect life, not simply change it.|كانت نظريته أن العلم ينبغي أن يحمي الحياة لا أن يغيّرها فحسب.|science=علم
+Adam agreed. He believed that life was precious and that every new discovery should serve humanity.|وافق آدم. كان يؤمن بأن الحياة ثمينة وأن كل اكتشاف جديد ينبغي أن يخدم الإنسانية.|precious=ثمين، عزيز؛ discovery=اكتشاف؛ humanity=الإنسانية
+
+Years later, the baby grew into a healthy young man.|بعد سنوات، كبر الرضيع وصار شابًا سليمًا.|healthy=سليم، بصحة جيدة
+He was carefree and free from anxieties, unaware of how close he had once come to losing his life.|كان خالي البال بلا مخاوف، غير مدرك كم كان قريبًا يومًا من فقدان حياته.|carefree=خالي البال، بلا هموم؛ anxieties=مخاوف، قلق؛ unaware=غير مدرك
+One day, he visited Adam and thanked him.|في يوم ما زار آدم وشكره.|thanked=يشكر
+“You gave me a second chance at life,” he said.|“لقد منحتني فرصة ثانية للحياة،” قال.|second chance=فرصة ثانية
+Adam smiled. He knew that the operation had been a tremendous achievement, but the greatest miracle was not the medical procedure itself.|ابتسم آدم. كان يعرف أن العملية كانت إنجازًا عظيمًا، لكن أعظم معجزة لم تكن الإجراء الطبي نفسه.|miracle=معجزة
+It was the chance for a new life to begin.|بل كانت فرصة لبدء حياة جديدة.|chance=فرصة`},
+{t:"The Detective’s Last Chance",x:`Detective James was a serious and intelligent man.|كان المحقق جيمس رجلًا جادًا وذكيًّا.|detective=محقق، مخبر؛ intelligent=ذكي
+He was famous for his fine investigative skills and his solemn attitude toward every legal case.|اشتهر بمهاراته التحقيقية الراقية وموقفه الجاد الرصين من كل قضية قانونية.|famous=مشهور؛ fine=راقٍ، دقيق، ممتاز؛ investigative=تحقيقي؛ solemn=وقور، رصين، جاد؛ attitude=موقف، اتجاه؛ legal case=قضية قانونية
+Solving mysteries was his strong suit, and he always believed that even the most terrible crimes could be solved.|كان حل الألغاز نقطة قوته، وكان يؤمن دائمًا بأن حتى أفظع الجرائم يمكن حلها.|strong suit=نقطة قوة، مجال تفوّق؛ mysteries=ألغاز؛ crimes=جرائم
+
+One evening, the police received a call about a wealthy businessman who had been kidnapped.|في مساء ما، تلقت الشرطة بلاغًا عن رجل أعمال ثري تعرّض للخطف.|police=شرطة؛ wealthy=ثري، غني؛ businessman=رجل أعمال؛ kidnapped=مخطوف
+His family was terrified.|كانت عائلته مذعورة.|terrified=مذعور، مرتعب
+His daughter tried to suppress her tears, while his son began to shout at the officers, demanding that they find his father immediately.|حاولت ابنته كبت دموعها، بينما بدأ ابنه يصرخ في الضباط مطالبًا إياهم بإيجاد أبيه فورًا.|suppress=يكبت، يقمع؛ officers=ضباط؛ demand=يطالب بـ
+
+James told everyone to remain calm.|طلب جيمس من الجميع التزام الهدوء.|
+“You might as well tell me everything you know,” he said. “Every little thing could be important.”|“من الأفضل أن تخبروني بكل ما تعرفونه،” قال. “أي تفصيل صغير قد يكون مهمًا.”|might as well=من الأفضل أن، لا ضير في أن
+
+The family explained that their father had been suffering hardships recently.|شرحت العائلة أن أباهم كان يعاني متاعب مؤخرًا.|
+His business was weak, and his competitors had treated him coldly.|كان عمله ضعيفًا، وقد عامله منافسوه ببرود.|weak=ضعيف؛ competitors=منافسون؛ coldly=ببرود
+He had become emotionally numb and apathetic.|أصبح متبلّد المشاعر وغير مبالٍ.|emotionally=عاطفيًّا؛ numb=متبلّد، مخدّر؛ apathetic=لا مبالٍ، غير مكترث
+He used to be cheerful and in high spirits, but lately he seemed empty inside.|كان فيما مضى مرحًا ومعنوياته عالية، لكنه بدا مؤخرًا فارغًا من الداخل.|cheerful=مرح، مبتهج؛ lately=مؤخرًا، في الآونة الأخيرة؛ empty=فارغ
+
+James began to put his hand to the investigation.|بدأ جيمس يضع يده في التحقيق ويباشره.|put one’s hand to=يشرع في، يباشر؛ investigation=تحقيق
+He asked his assistant to call the police department and arrange for additional officers.|طلب من مساعده الاتصال بقسم الشرطة وترتيب إرسال ضباط إضافيين.|arrange for=يرتّب لـ؛ additional=إضافي
+He also needed to find a safe place for the businessman’s young son, so he wouldn’t be disturbed by the investigation.|كما احتاج إلى إيجاد مكان آمن لابن رجل الأعمال الصغير كي لا يتأثر بالتحقيق.|disturbed=مزعَج، مضطرب
+“Don’t interfere with my work,” James warned the reporters.|“لا تتدخلوا في عملي،” حذّر جيمس الصحفيين.|interfere with=يتدخل في، يعرقل؛ reporters=مراسلون صحفيون
+“And don’t distract the officers.”|“ولا تشتتوا انتباه الضباط.”|distract=يشتّت الانتباه
+
+At the crime scene, James noticed something unusual: a lottery ticket lying beside a bowl of porridge.|في مسرح الجريمة، لاحظ جيمس شيئًا غير معتاد: تذكرة يانصيب ملقاة بجانب وعاء من العصيدة.|crime scene=مسرح الجريمة؛ lottery ticket=تذكرة يانصيب؛ porridge=عصيدة، شوفان مطبوخ؛ bowl=وعاء، طاسة
+The porridge was still warm, and bubbles were rising from a small pot in the kitchen.|كانت العصيدة لا تزال دافئة، وكانت فقاعات تتصاعد من قدر صغير في المطبخ.|bubbles=فقاعات؛ rising=يتصاعد؛ pot=قدر
+“Someone was here recently,” he whispered.|“كان أحدهم هنا مؤخرًا،” همس.|
+
+He examined the room carefully. The furniture was stiff and hardened with age, but the floor had fresh marks.|فحص الغرفة بعناية. كان الأثاث متيبسًا وقاسيًا من القِدم، لكن على الأرض آثارًا جديدة.|stiff=متيبّس، جامد؛ hardened=متصلّب؛ fresh=طازج، جديد؛ marks=آثار، علامات
+There were signs of an attack, and a chair had been thrown across the room.|كانت هناك علامات اعتداء، وقد رُمي كرسي عبر الغرفة.|signs=علامات، دلائل؛ attack=اعتداء، هجوم؛ thrown=رُمي
+
+James asked the servants about the incident.|سأل جيمس الخدم عن الحادثة.|servants=خدم؛ incident=حادثة، واقعة
+One of them blinked nervously and winked at another servant.|رمش أحدهم بتوتر وغمز لخادم آخر.|blinked=يرمش، يطرف
+James immediately noticed their strange behavior.|لاحظ جيمس سلوكهم الغريب على الفور.|
+“Tell me the truth,” he said. “I know you’re hiding something.”|“أخبروني بالحقيقة،” قال. “أعرف أنكم تخفون شيئًا.”|hiding=يخفي
+
+The older servant finally confessed that the businessman had been attacked by two men.|اعترف الخادم الأكبر سنًّا أخيرًا بأن رجل الأعمال تعرّض لهجوم من رجلين.|confessed=يعترف
+They had threatened him and treated him like a slave.|لقد هدّداه وعاملاه كالعبد.|slave=عبد
+They had forced him to work without rest, and he had suffered terribly.|أجبراه على العمل دون راحة، وعانى كثيرًا.|rest=راحة
+The servant explained that the criminals had tried to prevent him from calling the police.|شرح الخادم أن المجرمين حاولا منعه من الاتصال بالشرطة.|prevent=يمنع
+They had even threatened to assault him if he spoke.|بل هدّداه حتى بالاعتداء عليه إن تكلّم.|assault=يعتدي على
+James listened carefully. He knew that the criminals were extremely dangerous.|استمع جيمس بعناية. كان يعرف أن المجرمين بالغا الخطورة.|
+Their cruelty was terrible, and their actions had shocked the entire neighborhood.|كانت قسوتهما فظيعة، وقد صدمت أفعالهما الحي بأكمله.|shocked=صدم؛ neighborhood=حي، جوار
+
+He decided to work and rest in short periods, rather than exhaust himself.|قرر أن يعمل ويستريح على فترات قصيرة بدلًا من أن ينهك نفسه.|periods=فترات؛ exhaust=ينهك، يستنزف
+He ate some porridge to make up for the meal he had missed, then returned to the investigation.|أكل بعض العصيدة ليعوّض الوجبة التي فاتته، ثم عاد إلى التحقيق.|make up for=يعوّض عن؛ meal=وجبة؛ missed=فاتته، تغيّب عن
+His assistant suggested that they follow the money.|اقترح مساعده أن يتتبعوا المال.|suggested=يقترح؛ follow the money=يتتبع أثر المال
+The criminals had probably used the businessman’s wealth to arrange their escape.|ربما استخدم المجرمان ثروة رجل الأعمال لترتيب هروبهما.|probably=على الأرجح
+James agreed. “We can serve two purposes at once: find the missing man and discover who planned the kidnapping.”|وافق جيمس: “يمكننا أن نحقق غرضين معًا: إيجاد الرجل المفقود واكتشاف من خطّط للخطف.”|serve two purposes=يحقق غرضين؛ missing=مفقود؛ kidnapping=خطف، اختطاف
+
+Meanwhile, the criminals were hiding in an abandoned factory.|في الأثناء، كان المجرمان يختبئان في مصنع مهجور.|
+One of them was a frail man with weak arms and legs, while the other had strong four limbs and looked like a professional fighter.|كان أحدهما رجلًا واهنًا بذراعين وساقين ضعيفتين، بينما كان للآخر أطراف أربعة قوية وبدا كمقاتل محترف.|frail=واهن، هزيل؛ limbs=أطراف (الجسم)؛ fighter=مقاتل
+They were listening to rock and roll music, trying to relax.|كانا يستمعان إلى موسيقى الروك آند رول محاولين الاسترخاء.|rock and roll=روك آند رول؛ relax=يسترخي
+The music seemed to permeate the entire building.|بدت الموسيقى تتخلل المبنى بأكمله.|permeate=يتخلل، ينفذ في
+
+Suddenly, a noise came from outside. One criminal shouted, and the other froze.|فجأة، جاءت ضجة من الخارج. صاح أحد المجرمين، وتجمّد الآخر.|froze=تجمّد، جمد في مكانه
+James had discovered their location.|كان جيمس قد اكتشف مكانهما.|location=موقع، مكان
+“Don’t move!” he roared as the officers entered the factory.|“لا تتحركوا!” زأر بينما دخل الضباط المصنع.|roared=يزأر، يصيح بصوت عالٍ
+The criminals attempted to attack the police, but they were quickly surrounded.|حاول المجرمان مهاجمة الشرطة، لكنهما حوصرا بسرعة.|surrounded=محاصَر
+James managed to break through their defenses and arrest them.|تمكّن جيمس من اختراق دفاعاتهما والقبض عليهما.|break through=يخترق، يشقّ طريقه؛ defenses=دفاعات؛ arrest=يعتقل، يقبض على
+The businessman was found in a locked room. He was exhausted, but alive.|وُجد رجل الأعمال في غرفة مقفلة. كان منهكًا لكنه حيّ.|locked=مقفل
+
+The discovery astonished everyone.|أذهل الاكتشاف الجميع.|astonished=يذهل، يدهش
+The lottery ticket had been the key to the case: it contained a fingerprint that connected one of the criminals to the kidnapping.|كانت تذكرة اليانصيب مفتاح القضية: فقد احتوت على بصمة تربط أحد المجرمين بالخطف.|key=مفتاح؛ fingerprint=بصمة إصبع
+After the rescue, the businessman thanked James.|بعد الإنقاذ، شكر رجل الأعمال جيمس.|rescue=إنقاذ
+He finally felt at peace, free from anxiety.|شعر أخيرًا بالسلام، متحرّرًا من القلق.|at peace=مرتاح البال، في سلام
+The empty feeling that had haunted his family began to disappear.|بدأ الشعور بالفراغ الذي طارد عائلته يتلاشى.|haunted=يطارد، يلازم
+James smiled. He had solved a horrible legal case, rescued an innocent man, and made a major breakthrough in his career.|ابتسم جيمس. لقد حلّ قضية قانونية مروعة وأنقذ رجلًا بريئًا وحقق إنجازًا كبيرًا في مسيرته.|horrible=مروّع، فظيع؛ innocent=بريء؛ breakthrough=إنجاز كبير، اختراق
+For the first time in months, he felt cheerful and carefree.|وللمرة الأولى منذ شهور، شعر بالمرح وخلوّ البال.|`},
+{t:"The Valley Where Nature and Culture Meet",x:`Far away from the crowded human world, there was a small village in the Andes Mountains of Peru.|بعيدًا عن عالم البشر المزدحم، كانت هناك قرية صغيرة في جبال الأنديز في بيرو.|crowded=مزدحم؛ Andes=الأنديز
+The village stood in a magnificent region surrounded by vast hills, a beautiful lake, and countless small streams and brooks.|وقفت القرية في منطقة رائعة تحيط بها تلال شاسعة وبحيرة جميلة وجداول صغيرة لا تُحصى.|region=منطقة؛ vast=شاسع؛ countless=لا يُحصى؛ streams=جداول، مجاري مائية؛ brooks=جداول صغيرة
+
+From the highest hill, visitors could enjoy a breathtaking field of vision.|من أعلى تل، كان بإمكان الزوار الاستمتاع بمجال رؤية خلّاب.|breathtaking=خلّاب، يخطف الأنفاس؛ field of vision=مجال الرؤية
+The view was so glorious and splendid that even experienced travelers found it difficult to describe.|كان المنظر مجيدًا وبديعًا لدرجة أن حتى المسافرين ذوي الخبرة وجدوا صعوبة في وصفه.|glorious=مجيد، رائع؛ travelers=مسافرون؛ describe=يصف
+The mountains, water, and green fields blended together in harmonious proportions, creating a truly superb landscape.|امتزجت الجبال والماء والحقول الخضراء معًا بنِسَب متناغمة، لتخلق منظرًا طبيعيًا رائعًا حقًّا.|blended=امتزج؛ proportions=نِسَب، تناسب؛ superb=رائع، ممتاز؛ landscape=منظر طبيعي
+
+The region contained an extraordinary variety of birds and beasts.|احتوت المنطقة على تنوّع استثنائي من الطيور والوحوش.|variety=تنوّع؛ beasts=وحوش، حيوانات
+Some lived near the lake, while others moved freely across the hills.|عاش بعضها قرب البحيرة، بينما تنقّل آخر بحرية عبر التلال.|
+The natural environment was so rich that it could hold in store countless surprises for anyone willing to explore it.|كانت البيئة الطبيعية غنية لدرجة أنها تحتفظ في جعبتها بمفاجآت لا تُحصى لكل من يرغب في استكشافها.|environment=بيئة؛ rich=غني؛ hold in store=يخبّئ، يحتفظ في جعبته؛ surprises=مفاجآت؛ explore=يستكشف
+
+The villagers had developed a traditional system of agriculture.|طوّر القرويون نظامًا تقليديًّا للزراعة.|villagers=قرويون؛ agriculture=زراعة
+They planted potatoes, maize, and quinoa, and cultivated different crops according to the season.|زرعوا البطاطس والذرة والكينوا، وزرعوا محاصيل مختلفة بحسب الموسم.|planted=زرع؛ maize=ذرة؛ quinoa=الكينوا؛ cultivated=يزرع، يفلح؛ crops=محاصيل؛ season=موسم
+Some families also bred llamas and alpacas, which were essential to their way of life.|وربّت بعض العائلات أيضًا اللاما والألبكة، وهي أساسية لنمط حياتهم.|bred=ربّى، استولد؛ llamas=حيوانات اللاما؛ alpacas=الألبكة؛ essential=أساسي، ضروري؛ way of life=نمط الحياة
+
+Their agricultural methods were meticulous and elaborate.|كانت أساليبهم الزراعية دقيقة ومتقنة.|agricultural=زراعي؛ meticulous=دقيق للغاية، مدقّق؛ elaborate=متقن، مفصّل
+Every field had a distinct shape and pattern, designed to make the best use of the land and water.|كان لكل حقل شكل ونمط مميزان، صُمّما للاستفادة القصوى من الأرض والماء.|distinct=مميز، واضح؛ shape=شكل؛ pattern=نمط؛ make the best use of=يستفيد أقصى استفادة من
+The farmers carefully distinguished between different types of soil and knew exactly which crops could grow in each area.|ميّز المزارعون بعناية بين أنواع التربة المختلفة وعرفوا تمامًا أي المحاصيل تنمو في كل منطقة.|farmers=مزارعون؛ distinguished=يميّز؛ soil=تربة
+
+One day, a young architect named Elena arrived in the village.|في يوم ما، وصلت إلى القرية مهندسة معمارية شابة تُدعى إيلينا.|architect=مهندس معماري
+She wanted to conceive and design a new irrigation system that would convey water from the mountain streams to the distant fields.|أرادت أن تتصور وتصمم نظام ري جديدًا ينقل الماء من جداول الجبال إلى الحقول البعيدة.|conceive=يتصور، يبتكر فكرة؛ irrigation=ري؛ convey=ينقل، يوصل
+Her plan was clear-cut and practical.|كانت خطتها واضحة ومحدّدة وعملية.|clear-cut=واضح ومحدد، لا لبس فيه
+The system would contain several small channels, each constructed to distribute water evenly.|سيحتوي النظام على عدة قنوات صغيرة، شُيّدت كل منها لتوزيع الماء بالتساوي.|channels=قنوات؛ constructed=مشيَّد؛ distribute=يوزّع؛ evenly=بالتساوي
+She believed that traditional knowledge and modern engineering could blend perfectly.|كانت تؤمن بأن المعرفة التقليدية والهندسة الحديثة يمكن أن تمتزجا بإتقان.|modern=حديث؛ engineering=هندسة؛ perfectly=بإتقان
+
+However, some villagers rejected her proposal.|غير أن بعض القرويين رفضوا اقتراحها.|rejected=رفض؛ proposal=اقتراح، مقترح
+They feared that the new system might repel wildlife, damage the landscape, or exclude local farmers from important decisions.|خافوا أن يُبعد النظام الجديد الحياة البرية أو يُفسد المنظر الطبيعي أو يُقصي المزارعين المحليين عن القرارات المهمة.|repel=يُبعد، يطرد، ينفّر؛ wildlife=الحياة البرية؛ exclude=يُقصي، يستبعد؛ local=محلي
+Elena listened carefully. She did not want to impose her ideas on the community.|استمعت إيلينا بعناية. لم ترد أن تفرض أفكارها على المجتمع.|impose=يفرض
+Instead, she asked the villagers to explain their concerns and suggest improvements.|بل طلبت من القرويين أن يشرحوا مخاوفهم ويقترحوا تحسينات.|concerns=مخاوف، همومهم؛ improvements=تحسينات
+
+During the discussions, an elderly farmer named Mateo shared his wisdom.|أثناء النقاشات، شارك مزارع مسنّ يُدعى ماتيو حكمته.|wisdom=حكمة
+“Nature is not something we own,” he said. “It is something we benefit from, protect, and pass on to future generations.”|“الطبيعة ليست شيئًا نملكه،” قال. “إنها شيء نستفيد منه ونحميه ونورّثه للأجيال القادمة.”|nature=الطبيعة؛ own=يملك؛ benefit from=يستفيد من؛ pass on=يورّث، ينقل إلى؛ generations=أجيال
+He explained that the village’s diet was closely connected to its environment.|شرح أن غذاء القرية مرتبط ارتباطًا وثيقًا ببيئتها.|diet=نظام غذائي، غذاء؛ closely=ارتباطًا وثيقًا
+Their food and drink came mainly from local farms, and each traditional meal had its own authentic flavor.|جاء طعامهم وشرابهم أساسًا من المزارع المحلية، وكانت لكل وجبة تقليدية نكهتها الأصيلة.|mainly=أساسًا، في الغالب؛ authentic=أصيل، حقيقي؛ flavor=نكهة
+
+The villagers prepared a vegetarian meal using potatoes, maize, beans, and fresh vegetables.|أعدّ القرويون وجبة نباتية باستخدام البطاطس والذرة والفاصولياء والخضروات الطازجة.|prepared=يُعدّ، يحضّر؛ vegetarian=نباتي؛ beans=فاصولياء؛ vegetables=خضروات
+They cooked everything slowly and used natural seasoning and condiments.|طهوا كل شيء ببطء واستخدموا توابل وتتبيلات طبيعية.|seasoning=تتبيل، توابل؛ condiments=مُنكِّهات، صلصات؛ natural=طبيعي
+The meal was simple, yet its taste was superb.|كانت الوجبة بسيطة، ومع ذلك كان طعمها رائعًا.|simple=بسيط؛ taste=طعم، ذوق
+“Food is more than something we eat,” Mateo explained. “It carries our history, our identity, and our inspiration.”|“الطعام أكثر من شيء نأكله،” شرح ماتيو. “إنه يحمل تاريخنا وهويتنا وإلهامنا.”|identity=هوية؛ inspiration=إلهام
+
+Elena realized that the project needed to respect the village’s inner values.|أدركت إيلينا أن المشروع يجب أن يحترم القيم الداخلية للقرية.|inner=داخلي، باطني؛ values=قيم
+She redesigned the system to preserve the natural streams and protect the surrounding wildlife.|أعادت تصميم النظام للحفاظ على الجداول الطبيعية وحماية الحياة البرية المحيطة.|redesigned=يعيد التصميم؛ preserve=يحافظ على، يصون
+The new plan was so carefully designed that it could benefit both agriculture and nature.|كانت الخطة الجديدة مصممة بعناية لدرجة أنها تنفع الزراعة والطبيعة معًا.|
+Even if the villagers disagreed at first, they gradually began to approve of the idea.|حتى لو اختلف القرويون في البداية، فقد بدأوا تدريجيًّا يوافقون على الفكرة.|approve of=يستحسن، يوافق على
+
+The project brought forth new ideas and encouraged the community to innovate.|أثمر المشروع أفكارًا جديدة وشجّع المجتمع على الابتكار.|brought forth=يُنتج، يثمر؛ innovate=يبتكر، يجدّد
+Farmers introduced new ways to process their crops, preserve food, and cultivate the land without exhausting its resources.|أدخل المزارعون طرقًا جديدة لمعالجة محاصيلهم وحفظ الطعام وزراعة الأرض دون استنزاف مواردها.|process=يعالج، يصنّع؛ resources=موارد
+In the same way, the younger generation learned to appreciate the knowledge of their elders.|وبالطريقة نفسها، تعلّم الجيل الأصغر تقدير معرفة كبارهم.|in the same way=بالطريقة نفسها؛ younger generation=الجيل الأصغر؛ elders=كبار السن
+Every evening, the villagers gathered near the lake to have their meal.|كل مساء، كان القرويون يجتمعون قرب البحيرة لتناول وجبتهم.|gathered=اجتمع؛ have a meal=يتناول وجبة
+They shared food, stories, and laughter while the sun disappeared behind the hills.|تشاركوا الطعام والحكايات والضحكات بينما اختفت الشمس خلف التلال.|shared=تشارك؛ laughter=ضحك
+The village had become a glorious example of how human life could exist in harmony with nature.|أصبحت القرية مثالًا رائعًا على كيف يمكن للحياة البشرية أن تتعايش في انسجام مع الطبيعة.|example=مثال؛ exist=يوجد، يتعايش؛ in harmony with=في انسجام مع
+And Elena understood something important: progress did not mean rejecting the past.|وفهمت إيلينا شيئًا مهمًّا: التقدم لا يعني رفض الماضي.|
+It meant creating a better future while preserving what was authentic and valuable.|بل يعني صنع مستقبل أفضل مع الحفاظ على ما هو أصيل وقيّم.|`},
+{t:"The Secret Life of the Wild",x:`In the heart of South Africa, there was a vast wildlife reserve surrounded by deep valleys, green forests, and beautiful mountains.|في قلب جنوب أفريقيا، كانت هناك محمية حياة برية شاسعة تحيط بها وديان عميقة وغابات خضراء وجبال جميلة.|in the heart of=في قلب؛ reserve=محمية؛ valleys=وديان؛ forests=غابات
+The reserve was home to lions, leopards, elephants, and countless other animals.|كانت المحمية موطنًا للأسود والفهود والفيلة وحيوانات أخرى لا تُحصى.|home to=موطن لـ؛ leopards=فهود، نمور مرقطة؛ elephants=فيلة
+
+A young wildlife researcher named Daniel worked there with an experienced and knowledgeable conservationist called Mr. Thomas.|عمل هناك باحث شاب في الحياة البرية يُدعى دانيال مع مختص خبير واسع المعرفة في حماية البيئة يُدعى السيد توماس.|researcher=باحث؛ knowledgeable=واسع المعرفة، مطّلع؛ conservationist=مختص/ناشط في حماية البيئة
+Daniel had received an excellent education in biology, but Thomas believed that education alone was not enough.|تلقى دانيال تعليمًا ممتازًا في علم الأحياء، لكن توماس كان يؤمن بأن التعليم وحده لا يكفي.|excellent=ممتاز؛ education=تعليم؛ biology=علم الأحياء
+True culture and breeding of character, he often said, were reflected in how a person treated living creatures.|وكان يقول كثيرًا إن الثقافة الحقيقية وتهذيب الشخصية يتجليان في كيفية تعامل المرء مع الكائنات الحية.|breeding=تربية، تهذيب؛ character=شخصية، طباع؛ reflected=يتجلى، ينعكس؛ creatures=كائنات
+
+Thomas was a respectful gentleman, a virtuous man who treated everyone with great respect.|كان توماس رجلًا نبيلًا محترمًا، فاضلًا يعامل الجميع بكل احترام.|respectful=محترم، مهذّب؛ virtuous=فاضل، ذو فضيلة
+He was also a model of patience and kindness.|وكان أيضًا نموذجًا في الصبر واللطف.|model=نموذج، قدوة
+Daniel, however, was sometimes lazy and impatient.|أما دانيال فكان أحيانًا كسولًا ونافد الصبر.|lazy=كسول
+He wanted immediate results and was eager to discover something extraordinary.|أراد نتائج فورية وكان متلهفًا لاكتشاف شيء استثنائي.|results=نتائج
+Thomas reminded him that happiness consists in contentment, and that meaningful achievements require time and effort.|ذكّره توماس بأن السعادة تكمن في القناعة، وأن الإنجازات ذات المعنى تتطلب وقتًا وجهدًا.|consist in=يكمن في، يتمثل في؛ contentment=قناعة، رضا
+
+One morning, Daniel decided to pay a visit to a remote section of the reserve.|في صباح ما، قرر دانيال زيارة قسم نائٍ من المحمية.|pay a visit=يقوم بزيارة؛ remote=نائٍ، بعيد؛ section=قسم، جزء
+He had heard reports of a young leopard roaming about the area.|كان قد سمع تقارير عن فهد صغير يتجول في المنطقة.|roam=يتجول، يجوب
+The animal had apparently lost its mother and was leading a vagrant life, moving from one corner of the forest to another.|يبدو أن الحيوان فقد أمه وكان يعيش حياة تشرد، ينتقل من ركن في الغابة إلى آخر.|apparently=على ما يبدو؛ vagrant=متشرد، هائم؛ corner=ركن، زاوية
+
+The researchers had installed the most advanced camera system available.|كان الباحثون قد ركّبوا أحدث نظام كاميرات متاح.|install=يركّب، يثبّت؛ advanced=متقدم، حديث؛ camera=كاميرا
+Each camera had a sensitive lens capable of capturing even the smallest movement.|كان لكل كاميرا عدسة حساسة قادرة على التقاط أدق حركة.|sensitive=حساس؛ lens=عدسة؛ capturing=يلتقط؛ movement=حركة
+The equipment could monitor animals day and night, store thousands of images, and transmit information to a control room.|استطاعت المعدات مراقبة الحيوانات ليل نهار وتخزين آلاف الصور ونقل المعلومات إلى غرفة تحكم.|equipment=معدات؛ monitor=يراقب؛ store=يخزّن؛ transmit=ينقل، يرسل؛ control room=غرفة التحكم
+Some cameras could even be remotely controlled.|بل كان بالإمكان التحكم في بعض الكاميرات عن بُعد.|remotely=عن بُعد
+The researchers could operate them immediately, adjust their position, and follow the tracks of animals without disturbing their natural behavior.|استطاع الباحثون تشغيلها فورًا وضبط وضعها وتتبع آثار الحيوانات دون إزعاج سلوكها الطبيعي.|adjust=يضبط، يعدّل؛ tracks=آثار، مسارات؛ disturbing=يزعج
+
+Daniel began to study the camera recordings intensively.|بدأ دانيال يدرس تسجيلات الكاميرات بتركيز مكثف.|recordings=تسجيلات؛ intensively=بشكل مكثف
+He examined every scene and shot, looking for traces of the young leopard.|فحص كل مشهد ولقطة بحثًا عن آثار الفهد الصغير.|scene=مشهد؛ shot=لقطة؛ traces=آثار، بقايا
+Suddenly, he noticed something unusual.|فجأة، لاحظ شيئًا غير معتاد.|
+
+A small animal was lying prone beneath a tree, with its stomach touching the ground.|كان حيوان صغير مستلقيًا على بطنه تحت شجرة، وبطنه يلامس الأرض.|lying prone=مستلقٍ على بطنه؛ beneath=تحت، أسفل؛ stomach=بطن، معدة
+Its keen sense of smell helped it detect food from a considerable distance.|ساعدته حاسة شم قوية على اكتشاف الطعام من مسافة بعيدة.|sense of smell=حاسة الشم؛ detect=يكتشف، يرصد؛ distance=مسافة
+It was a young leopard, and its movements were quick, nimble, and agile.|كان فهدًا صغيرًا، وكانت حركاته سريعة ورشيقة وخفيفة.|quick=سريع؛ nimble=رشيق، خفيف الحركة؛ agile=رشيق، سريع الحركة
+
+Daniel gazed at the screen.|حدّق دانيال في الشاشة.|gazed=حدّق، تأمل؛ screen=شاشة
+The animal suddenly threw itself on a small bird, but failed to catch it.|ألقى الحيوان بنفسه فجأة على طائر صغير لكنه فشل في الإمساك به.|threw itself on=ينقضّ على، يلقي بنفسه على؛ catch=يمسك، يقبض على
+It then stared deeply into the bushes, apparently searching for another opportunity.|ثم حدّق بعمق في الأدغال، باحثًا على ما يبدو عن فرصة أخرى.|bushes=أدغال، شجيرات؛ searching=يبحث
+“Look at that movement!” Daniel exclaimed.|“انظر إلى تلك الحركة!” هتف دانيال.|exclaimed=هتف، صاح (من الدهشة)
+Thomas smiled. “Never judge an animal by one action. You must understand its entire motion and behavior.”|ابتسم توماس: “لا تحكم أبدًا على حيوان من فعل واحد. يجب أن تفهم حركته وسلوكه كاملًا.”|judge=يحكم على؛ motion=حركة، سير
+
+They continued watching. The leopard appeared hungry and somewhat weak.|واصلوا المشاهدة. بدا الفهد جائعًا وضعيفًا نوعًا ما.|hungry=جائع؛ somewhat=نوعًا ما
+It had a small defect in one of its front paws, which affected its ability to hunt.|كان في إحدى قوائمه الأمامية عيب صغير أثّر في قدرته على الصيد.|defect=عيب، خلل؛ paws=كفوف، مخالب؛ hunt=يصطاد
+The team decided to raise the animal temporarily at a special rehabilitation center.|قرر الفريق تربية الحيوان مؤقتًا في مركز إعادة تأهيل خاص.|raise=يربّي؛ rehabilitation=إعادة تأهيل
+They would feed it carefully, clean its living space, and monitor its health until it became strong enough to return to the wild.|سيطعمونه بعناية وينظفون مساحة معيشته ويراقبون صحته حتى يصبح قويًّا بما يكفي للعودة إلى البرية.|feed=يطعم، يغذّي؛ clean=ينظّف؛ the wild=البرية
+
+The center was busy and bustling.|كان المركز مشغولًا وصاخب النشاط.|bustling=صاخب بالنشاط، مزدحم بالحركة
+Workers were cleaning cages, preparing food, and caring for several rescued animals.|كان العاملون ينظفون الأقفاص ويجهزون الطعام ويعتنون بعدة حيوانات تم إنقاذها.|cages=أقفاص؛ caring for=يعتني بـ، يرعى
+A cheerful and jolly veterinarian named Maria welcomed Daniel.|رحّبت بدانيال طبيبة بيطرية مرحة بشوشة تُدعى ماريا.|jolly=مرح، بشوش؛ veterinarian=طبيب بيطري؛ welcomed=رحّب
+She was loving and affectionate toward the animals.|كانت محبة وحنونة تجاه الحيوانات.|loving=محب؛ affectionate=حنون، عطوف
+She had an intimate understanding of their needs and treated each one with patience.|كان لديها فهم عميق لاحتياجاتها وعاملت كلًّا منها بصبر.|needs=احتياجات
+
+“Some animals are greedy and gluttonous,” she joked, “but this little leopard is an exception. It barely eats anything!”|“بعض الحيوانات جشعة وشرهة،” قالت مازحة، “لكن هذا الفهد الصغير استثناء. إنه بالكاد يأكل شيئًا!”|greedy=جشع، طمّاع؛ gluttonous=شره، نهم؛ joked=مزح؛ exception=استثناء
+Daniel laughed. He poured fresh water into a bowl and prepared a suitable meal.|ضحك دانيال. سكب ماءً عذبًا في وعاء وحضّر وجبة مناسبة.|poured=صبّ، سكب
+He made sure not to drench the animal accidentally while cleaning its enclosure.|حرص على ألّا يبلّل الحيوان بالماء عن غير قصد أثناء تنظيف حظيرته.|made sure=تأكّد، حرص؛ drench=يبلّل تمامًا؛ accidentally=عن غير قصد؛ enclosure=حظيرة، سياج
+The leopard slowly began to trust the team.|بدأ الفهد ببطء يثق بالفريق.|
+Whenever Maria entered the room, it looked at her with an almost charming expression.|كلما دخلت ماريا الغرفة، نظر إليها بتعبير ساحر تقريبًا.|whenever=كلما، متى ما؛ charming=ساحر، جذاب
+Its eyes seemed to communicate a quiet affection.|بدت عيناه تعبّران عن مودة هادئة.|communicate=يعبّر، يتواصل؛ affection=مودة، حنان
+
+Meanwhile, Thomas asked Daniel to rely on his own efforts rather than depend entirely on technology.|في الأثناء، طلب توماس من دانيال الاعتماد على جهوده الخاصة بدل الاعتماد كليًّا على التكنولوجيا.|entirely=كليًّا، بالكامل؛ technology=تكنولوجيا
+Cameras could provide valuable information, but they could not replace careful observation.|يمكن للكاميرات توفير معلومات قيّمة، لكنها لا تستطيع أن تحل محل الملاحظة الدقيقة.|information=معلومات؛ replace=يحل محل، يستبدل؛ observation=ملاحظة، مراقبة
+One afternoon, the team decided to follow the tracks of another leopard that had been spotted near the eastern boundary.|بعد ظهر يوم ما، قرر الفريق تتبع آثار فهد آخر شوهد قرب الحدود الشرقية.|spotted=شوهد، رُصد؛ eastern=شرقي؛ boundary=حدود، تخم
+Daniel carefully examined every trace and trail in the soil.|فحص دانيال بعناية كل أثر ومسار في التربة.|trail=مسار، أثر طريق
+
+He noticed a faint sound of something astir in a small nook behind a rock.|لاحظ صوتًا خافتًا لشيء يتحرك في ركن صغير خلف صخرة.|astir=متحرك، في حركة؛ nook=ركن صغير، زاوية؛ rock=صخرة
+He stared into the corner and immediately saw movement.|حدّق في الركن ورأى الحركة فورًا.|stared=حدّق
+It was the young leopard!|كان الفهد الصغير!|
+The animal had escaped from its temporary enclosure and wandered into the surrounding forest.|كان الحيوان قد هرب من حظيرته المؤقتة وتاه في الغابة المحيطة.|wandered=تجوّل، هام، تاه
+Daniel used the remote control to operate a nearby camera and monitor its position.|استخدم دانيال جهاز التحكم عن بُعد لتشغيل كاميرا قريبة ومراقبة موضعه.|remote control=جهاز تحكم عن بعد
+
+Unfortunately, he made an error while adjusting the equipment.|لسوء الحظ، ارتكب خطأ أثناء ضبط المعدات.|unfortunately=لسوء الحظ؛ error=خطأ
+The camera turned in the wrong direction, and the team temporarily lost sight of the animal.|استدارت الكاميرا في الاتجاه الخاطئ، وفقد الفريق الحيوان من مجال الرؤية مؤقتًا.|direction=اتجاه؛ lost sight of=فقد من نظره
+“There’s a flaw in the system,” Daniel admitted.|“هناك عيب في النظام،” اعترف دانيال.|flaw=عيب، ثغرة
+Thomas remained calm. “Every system has defects. What matters is how we respond to them.”|ظل توماس هادئًا: “كل نظام فيه عيوب. المهم هو كيف نتعامل معها.”|respond=يستجيب، يتعامل مع
+Daniel corrected the error and managed to locate the leopard again.|صحّح دانيال الخطأ وتمكّن من تحديد موقع الفهد مجددًا.|corrected=صحّح؛ locate=يحدد موقع
+The team followed its tracks until they found it resting beneath a tree.|تتبع الفريق آثاره حتى وجدوه يستريح تحت شجرة.|
+
+They approached slowly, without frightening it. Maria placed some food nearby, and the leopard eventually came closer.|اقتربوا ببطء دون أن يخيفوه. وضعت ماريا بعض الطعام قريبًا، وفي النهاية اقترب الفهد.|
+Weeks passed, and the animal became stronger.|مرّت أسابيع وصار الحيوان أقوى.|
+Its movements were more confident, its appetite improved, and its injured paw gradually recovered.|صارت حركاته أكثر ثقة، وتحسّنت شهيته، وتعافى كفّه المصاب تدريجيًّا.|appetite=شهية
+Finally, the day of its release arrived.|وأخيرًا جاء يوم إطلاق سراحه.|release=إطلاق سراح، تحرير
+The team opened the gate, and the leopard stood still for a moment.|فتح الفريق البوابة، ووقف الفهد ساكنًا للحظة.|gate=بوابة؛ stood still=وقف ساكنًا
+Then, with one quick and agile movement, it disappeared into the forest.|ثم، بحركة سريعة رشيقة واحدة، اختفى في الغابة.|
+Daniel gazed after it, feeling completely happy.|حدّق دانيال في أثره وهو يشعر بسعادة كاملة.|gazed after=يتبع بنظره
+Thomas placed a hand on his shoulder.|وضع توماس يدًا على كتفه.|shoulder=كتف
+“Remember, Daniel,” he said, “our greatest success is not controlling nature. It is learning to respect it.”|“تذكّر يا دانيال،” قال، “أعظم نجاح لنا ليس السيطرة على الطبيعة، بل تعلّم احترامها.”|
+And from that day onward, Daniel understood that knowledge, patience, and compassion were far more valuable than any advanced machine.|ومنذ ذلك اليوم، فهم دانيال أن المعرفة والصبر والرحمة أثمن بكثير من أي آلة متقدمة.|from that day onward=منذ ذلك اليوم فصاعدًا؛ compassion=رحمة، شفقة`},
+{t:"The Secret of the Ancient Island",x:`For generations, the people of a remote island in the Pacific Ocean had believed that a mysterious organism lived beneath the enormous waves.|لأجيال، آمن سكان جزيرة نائية في المحيط الهادئ بأن كائنًا عضويًّا غامضًا يعيش تحت الأمواج الهائلة.|Pacific Ocean=المحيط الهادئ؛ organism=كائن حي، كائن عضوي؛ enormous=هائل، ضخم
+Their ancestors had described it as a strange living thing that could survive in complete darkness.|وصفه أسلافهم بأنه كائن حي غريب يستطيع البقاء في ظلام دامس.|ancestors=أسلاف، أجداد؛ darkness=ظلام
+
+According to an ancient legend, the island’s first male and female inhabitants had discovered the organism near a huge rock.|وفق أسطورة قديمة، اكتشف أول سكان الجزيرة من الرجال والنساء الكائن قرب صخرة ضخمة.|legend=أسطورة؛ inhabitants=سكان؛ huge=ضخم
+They believed it was a gift from nature, and they left stories about it behind, handing them down to their offspring and posterity.|اعتقدوا أنه هدية من الطبيعة، وتركوا حكايات عنه ونقلوها إلى ذريتهم وأعقابهم.|gift=هدية؛ handing down=يورّث، ينقل للأجيال؛ offspring=ذرية، نسل؛ posterity=الأجيال اللاحقة، الأعقاب
+The legend continued to last for centuries.|واستمرت الأسطورة قرونًا.|last=يدوم، يستمر؛ centuries=قرون
+Naturally, many people considered it a primitive superstition.|وبطبيعة الحال، اعتبرها كثيرون خرافة بدائية.|naturally=بطبيعة الحال؛ primitive=بدائي؛ superstition=خرافة
+However, an experienced marine biologist named Dr. Elena decided to study the island’s unusual ecosystem.|غير أن عالمة أحياء بحرية خبيرة تُدعى الدكتورة إيلينا قررت دراسة النظام البيئي غير المعتاد للجزيرة.|marine=بحري؛ biologist=عالم أحياء؛ ecosystem=نظام بيئي
+
+“Hey, Captain!” she shouted as the research boat approached the shore. “There must be something unusual beneath those waves!”|“يا كابتن!” صاحت بينما اقترب قارب البحث من الشاطئ. “لا بد أن هناك شيئًا غير معتاد تحت تلك الأمواج!”|captain=قبطان؛ shore=شاطئ، ساحل
+The captain described the surrounding sea as noisy and restless.|وصف القبطان البحر المحيط بأنه صاخب ومضطرب.|noisy=صاخب؛ restless=مضطرب، قلق
+White noise from the wind, water, and distant machinery filled the air.|ملأ ضجيج أبيض من الرياح والماء والآلات البعيدة الأجواء.|white noise=ضجيج أبيض؛ machinery=آلات
+Yet, for no apparent reason, a strange sound disappeared whenever the boat came close to the enormous rock.|ومع ذلك، ودون سبب واضح، كان صوت غريب يختفي كلما اقترب القارب من الصخرة الهائلة.|for no apparent reason=دون سبب واضح
+
+Elena was curious. She approached the rock and gently stroked its rough surface.|كانت إيلينا فضولية. اقتربت من الصخرة ومسّدت سطحها الخشن برفق.|curious=فضولي؛ stroked=مسّد، مسح بلطف؛ rough=خشن؛ surface=سطح
+Suddenly, she felt a vibration.|فجأة، شعرت باهتزاز.|vibration=اهتزاز
+“That must be a signal,” she whispered.|“لا بد أن هذه إشارة،” همست.|signal=إشارة
+Her assistant, Marco, had no alternative but to agree.|لم يكن أمام مساعدها ماركو خيار سوى الموافقة.|no alternative but=لا بديل سوى، لا خيار سوى
+In view of the strange phenomenon, they decided to investigate the area more carefully.|نظرًا إلى الظاهرة الغريبة، قررا فحص المنطقة بعناية أكبر.|in view of=نظرًا إلى، بالنظر إلى؛ phenomenon=ظاهرة؛ investigate=يحقق في، يستقصي
+
+They lowered a special device into the water.|أنزلا جهازًا خاصًا في الماء.|lowered=أنزل؛ device=جهاز
+Its purpose was to expose hidden movements and reveal what ordinary cameras could not depict.|كان هدفه كشف الحركات الخفية وإظهار ما لا تستطيع الكاميرات العادية تصويره.|purpose=هدف، غاية؛ expose=يكشف، يعرّض؛ hidden=خفي؛ depict=يصوّر، يرسم
+The screen showed a strange organism moving beneath the waves.|أظهرت الشاشة كائنًا غريبًا يتحرك تحت الأمواج.|
+It had nerves, a complex internal structure, and several unusual symptoms of biological activity.|كان له أعصاب وبنية داخلية معقدة وعدة أعراض غير معتادة لنشاط حيوي.|nerves=أعصاب؛ internal=داخلي؛ structure=بنية، هيكل؛ symptoms=أعراض؛ biological=حيوي، بيولوجي
+It seemed to evolve over time, adapting to changes in its environment.|بدا أنه يتطور مع الزمن، متكيّفًا مع تغيرات بيئته.|evolve=يتطور؛ adapting=يتكيّف
+
+Elena explained that the organism might have developed from a primeval form of life.|شرحت إيلينا أن الكائن ربما تطور من شكل بدائي قديم جدًّا من الحياة.|primeval=أولي، قديم جدًّا، من فجر التاريخ
+Its ancestors had probably survived through natural selection, while weaker organisms had been eliminated through competition.|على الأرجح نجا أسلافه عبر الانتخاب الطبيعي، بينما أُقصيت الكائنات الأضعف بالمنافسة.|natural selection=الانتخاب الطبيعي؛ eliminated=أُقصي، استُبعد؛ competition=منافسة
+“Evolution does not happen for no reason,” she explained.|“التطور لا يحدث بلا سبب،” شرحت.|evolution=تطور، نشوء
+“Every change has a cause, even if that cause is not immediately apparent.”|“لكل تغيير سبب، حتى لو لم يكن ذلك السبب واضحًا على الفور.”|apparent=واضح، ظاهر
+
+Marco pointed out that the organism seemed to respond to sound.|أشار ماركو إلى أن الكائن بدا مستجيبًا للصوت.|pointed out=يشير إلى، ينبّه إلى
+He suggested that certain frequencies might prompt it to approach the surface.|اقترح أن بعض الترددات قد تدفعه إلى الاقتراب من السطح.|frequencies=ترددات؛ prompt=يحفّز، يدفع
+There was no harm in testing the theory, so Elena played a low-frequency signal through the device.|لم يكن هناك ضرر من اختبار النظرية، فشغّلت إيلينا إشارة منخفضة التردد عبر الجهاز.|no harm in=لا ضرر من؛ low-frequency=منخفض التردد
+Immediately, the organism approached.|فورًا، اقترب الكائن.|
+“Hey! Look at that!” Marco called out.|“انظري إلى ذلك!” نادى ماركو.|called out=ينادي، يصيح
+The creature rose slowly toward the surface, revealing a beautiful pattern of light across its body.|ارتفع المخلوق ببطء نحو السطح، كاشفًا عن نمط جميل من الضوء عبر جسده.|rose=ارتفع؛ revealing=يكشف
+
+Elena was amazed by its effect on the surrounding environment.|دُهشت إيلينا من تأثيره في البيئة المحيطة.|amazed=مندهش
+The organism seemed to relieve the water of harmful substances, helping other living things survive.|بدا أن الكائن يخلّص الماء من المواد الضارة، مما يساعد الكائنات الحية الأخرى على البقاء.|relieve=يخلّص، يخفّف؛ harmful=ضار؛ substances=مواد
+However, the discovery caused trouble.|غير أن الاكتشاف جلب المتاعب.|trouble=متاعب، مشكلة
+A powerful company wanted to capture the organism and use it for commercial purposes.|أرادت شركة قوية أسر الكائن واستخدامه لأغراض تجارية.|powerful=قوي، نافذ؛ commercial=تجاري
+Its representatives offered the researchers a large amount of money in exchange for exclusive access.|عرض ممثلوها على الباحثين مبلغًا كبيرًا من المال مقابل وصول حصري.|representatives=ممثلون؛ in exchange for=مقابل؛ exclusive=حصري؛ access=وصول
+Elena refused.|رفضت إيلينا.|
+
+She knew that exposing the organism to uncontrolled experiments could cause serious harm.|كانت تعلم أن تعريض الكائن لتجارب غير منضبطة قد يسبب ضررًا جسيمًا.|uncontrolled=غير منضبط، بلا ضوابط؛ experiments=تجارب؛ harm=ضرر
+In light of its unusual biological importance, protecting it was more important than making money.|في ضوء أهميته البيولوجية غير المعتادة، كانت حمايته أهم من كسب المال.|in light of=في ضوء؛ importance=أهمية
+The company continued to put pressure on the research team.|واصلت الشركة الضغط على فريق البحث.|put pressure on=يضغط على
+Its representatives tried to reveal private information about the scientists and create obstacles to their work.|حاول ممثلوها كشف معلومات خاصة عن العلماء وخلق عقبات أمام عملهم.|reveal=يكشف؛ private=خاص، شخصي؛ scientists=علماء؛ obstacles=عقبات
+Marco became nervous. He had a spouse and a young child, and he feared that the company might threaten his family.|أصيب ماركو بالتوتر. كان له شريك حياة وطفل صغير، وخشي أن تهدد الشركة عائلته.|spouse=زوج أو زوجة، شريك الحياة
+Elena reassured him. “We must not act against our conscience. There is no alternative but to protect this discovery.”|طمأنته إيلينا: “يجب ألا نتصرف ضد ضميرنا. لا بديل عن حماية هذا الاكتشاف.”|act against=يتصرف ضد
+
+A few days later, Elena developed a mysterious disease.|بعد أيام قليلة، أصيبت إيلينا بمرض غامض.|developed=أصيب بـ، نشأ لديه؛ disease=مرض
+She experienced severe symptoms and became a patient at the island’s small medical center.|عانت أعراضًا شديدة وأصبحت مريضة في المركز الطبي الصغير بالجزيرة.|experienced=مرّ بـ، عانى؛ patient=مريض
+The doctor prescribed an auxiliary treatment to relieve her pain.|وصف الطبيب علاجًا مساعدًا لتخفيف ألمها.|prescribed=وصف (دواء)؛ auxiliary=مساعد، إضافي؛ pain=ألم
+Fortunately, she gradually recovered and was eventually cured.|لحسن الحظ، تعافت تدريجيًّا وشُفيت في النهاية.|cured=شُفي
+During her recovery, she continued to think about the organism’s remarkable efficacy.|أثناء تعافيها، واصلت التفكير في الفعالية الرائعة للكائن.|recovery=تعافٍ؛ remarkable=رائع، لافت؛ efficacy=فعالية، نجاعة
+She realized that it might offer new ways to treat certain illnesses.|أدركت أنه قد يوفّر طرقًا جديدة لعلاج بعض الأمراض.|treat=يعالج؛ illnesses=أمراض
+But she also understood that more research was necessary.|لكنها أدركت أيضًا أن المزيد من البحث ضروري.|research=بحث، أبحاث؛ necessary=ضروري
+
+The team eventually published its findings, describing the organism and its possible medical applications.|نشر الفريق في النهاية نتائجه، واصفًا الكائن وتطبيقاته الطبية المحتملة.|published=نشر؛ findings=نتائج، اكتشافات؛ applications=تطبيقات
+They offered their research to the scientific community rather than selling the discovery to the company.|قدّموا بحثهم للمجتمع العلمي بدلًا من بيع الاكتشاف للشركة.|scientific=علمي
+The island’s people were proud. Their ancestors’ old stories had turned out to contain an important truth.|شعر أهل الجزيرة بالفخر. تبيّن أن حكايات أسلافهم القديمة تحتوي على حقيقة مهمة.|turned out=يتبيّن، يظهر في النهاية
+And Elena learned that the greatest discoveries were not always those that could be owned.|وتعلّمت إيلينا أن أعظم الاكتشافات ليست دائمًا ما يمكن امتلاكه.|
+Sometimes, their real value lay in what they could give to the world.|أحيانًا تكمن قيمتها الحقيقية فيما يمكن أن تقدمه للعالم.|lay in=تكمن في`},
+{t:"The Forgotten Harbor",x:`For centuries, the small coastal town of Puerto Escondido had undergone many changes.|على مدى قرون، شهدت بلدة بويرتو إسكونديدو الساحلية الصغيرة تغيّرات كثيرة.|coastal=ساحلي؛ undergo=يمرّ بـ، يخضع لـ
+At first, its people lived solely by fishing, and several families had migrated there from remote villages.|في البداية، عاش أهلها على صيد السمك وحده، وهاجرت إليها عدة عائلات من قرى نائية.|solely=حصريًّا، وحده؛ fishing=صيد السمك؛ migrated=يهاجر، ينتقل
+They had learned to survive the harsh weather and the many vicissitudes of life.|تعلّموا النجاة من الطقس القاسي ومن تقلّبات الحياة الكثيرة.|harsh=قاسٍ، شديد؛ vicissitudes=تقلبات، صروف الدهر
+
+All along the coast, ancient settlements could be found.|على امتداد الساحل، يمكن العثور على مستوطنات قديمة.|all along=على امتداد؛ coast=ساحل؛ settlements=مستوطنات، تجمعات سكنية
+Their remains were scattered everywhere, but modern buildings and busy industries had begun to encroach on the historical sites.|كانت بقاياها منتشرة في كل مكان، لكن المباني الحديثة والصناعات النشطة بدأت تتعدّى على المواقع التاريخية.|remains=بقايا، آثار؛ scattered=متناثر، منتشر؛ encroach on=يتعدّى على، يتجاوز على؛ historical=تاريخي
+The town’s elders feared that these developments might destroy an essential part of their humanity and cultural identity.|خشي كبار البلدة أن تدمّر هذه التطورات جزئًا أساسيًّا من إنسانيتهم وهويتهم الثقافية.|developments=تطورات؛ cultural=ثقافي
+
+One day, a young historian named Elena arrived at the old wharf carrying a compass, several books, and a small tent.|في يوم ما، وصلت مؤرخة شابة تُدعى إيلينا إلى الرصيف القديم تحمل بوصلة وعدة كتب وخيمة صغيرة.|historian=مؤرخ؛ wharf=رصيف الميناء؛ compass=بوصلة؛ tent=خيمة
+Her aim was to conduct archaeological studies in the remote coastal region.|كان هدفها إجراء دراسات أثرية في المنطقة الساحلية النائية.|aim=هدف؛ conduct=يجري، يُدير؛ archaeological=أثري
+She wanted to discover how ancient people had lived, navigated the sea, and traded with neighboring communities.|أرادت اكتشاف كيف عاش القدماء وأبحروا في البحر وتاجروا مع المجتمعات المجاورة.|navigate=يبحر، يهتدي في الطريق؛ trade=يتاجر؛ neighboring=مجاور
+
+Elena had received some funds from a cultural foundation.|كانت إيلينا قد تلقّت بعض التمويل من مؤسسة ثقافية.|funds=أموال، تمويل؛ foundation=مؤسسة، مؤسسة خيرية
+However, her budget was limited, so she hired a local guide and rented a small boat.|غير أن ميزانيتها كانت محدودة، فاستأجرت مرشدًا محليًّا وقاربًا صغيرًا.|budget=ميزانية؛ hired=استأجر (شخصًا)، وظّف؛ guide=مرشد، دليل؛ rented=استأجر
+The guide was also an adviser who knew the local conditions and customs, including the traditions and religion of the people who once dwelled there.|وكان المرشد أيضًا مستشارًا يعرف الأوضاع والعادات المحلية، بما فيها تقاليد ودين من سكنوا هناك يومًا.|adviser=مستشار؛ conditions=أوضاع، ظروف؛ customs=عادات؛ traditions=تقاليد؛ religion=دين؛ dwelled=يسكن، يقيم
+“Here, history is not found in books alone,” the guide explained. “You must understand the people and their way of life.”|“هنا، لا يوجد التاريخ في الكتب وحدها،” شرح المرشد. “عليك أن تفهمي الناس ونمط حياتهم.”|history=تاريخ
+
+Elena began her work by every possible means.|بدأت إيلينا عملها بكل وسيلة ممكنة.|by every possible means=بكل وسيلة ممكنة
+She used satellite images to locate ancient roads and learned how to navigate the dangerous coastline.|استخدمت صور الأقمار الصناعية لتحديد الطرق القديمة وتعلّمت كيف تتنقل عبر الساحل الخطير.|satellite=قمر صناعي؛ coastline=خط الساحل
+Her guide showed her a hidden path leading to an abandoned settlement.|أراها مرشدها طريقًا خفيًّا يؤدي إلى مستوطنة مهجورة.|path=مسار، درب
+
+The town was once a bustling port, where merchants carried goods from distant countries.|كانت البلدة يومًا ميناءً نابضًا بالحياة، حيث ينقل التجار بضائع من بلدان بعيدة.|port=ميناء؛ merchants=تجار؛ goods=بضائع
+Its prosperity had caused a sensation throughout the region.|أحدث ازدهارها ضجة في أرجاء المنطقة.|prosperity=ازدهار، رخاء؛ cause a sensation=يُحدث ضجة، يثير إعجابًا واسعًا
+A famous public figure had even visited the harbor, and a newspaper column had described the event in a brief and concise article.|بل زار الميناء شخصية عامة مشهورة، ووصفت زاوية صحفية الحدث في مقال موجز ومختصر.|public figure=شخصية عامة؛ column=عمود صحفي؛ brief=موجز؛ concise=مختصر، دقيق ومقتضب
+
+Years later, several editions of books about the town were published.|بعد سنوات، نُشرت عدة طبعات من كتب عن البلدة.|editions=طبعات
+One special edition came out with a preface written by a respected historian.|صدرت طبعة خاصة بمقدمة كتبها مؤرخ محترم.|came out=صدر، ظهر؛ preface=مقدمة (كتاب)
+The books were issued and distributed to schools and libraries, bringing new interest and delight to readers.|أُصدرت الكتب ووُزّعت على المدارس والمكتبات، مما جلب اهتمامًا جديدًا ومتعة للقراء.|issued=أُصدر؛ delight=بهجة، متعة؛ readers=قراء
+
+But Elena discovered something more important: an ancient inscription describing a forgotten undertaking.|لكن إيلينا اكتشفت شيئًا أهم: نقشًا قديمًا يصف مشروعًا منسيًّا.|inscription=نقش، كتابة منقوشة؛ undertaking=مشروع، مهمة كبرى؛ forgotten=منسي
+It seemed as if the people had built a great system to protect their harbor and revitalize their local industry.|بدا كأن الناس بنوا نظامًا عظيمًا لحماية ميناءهم وإحياء صناعتهم المحلية.|revitalize=يعيد الحيوية، ينعش
+The project had extended for miles along the coast, and its purpose was to help the town prosper.|امتد المشروع أميالًا على طول الساحل، وكان غرضه مساعدة البلدة على الازدهار.|extend=يمتد؛ miles=أميال؛ prosper=يزدهر
+The historian’s adviser believed that this discovery could become the mainstream of a new historical exhibition.|آمن مستشار المؤرخة بأن هذا الاكتشاف قد يصبح المحور الرئيسي لمعرض تاريخي جديد.|mainstream=التيار الرئيسي، المحور الأساسي؛ exhibition=معرض
+
+When Elena finally returned to the town, she wrote a concise report.|حين عادت إيلينا أخيرًا إلى البلدة، كتبت تقريرًا موجزًا.|
+She explained that the old customs were not merely traditions from the past; they were an important part of human nature and collective memory.|شرحت أن العادات القديمة ليست مجرد تقاليد من الماضي، بل جزء مهم من الطبيعة البشرية والذاكرة الجماعية.|merely=مجرد، فحسب؛ human nature=الطبيعة البشرية؛ collective=جماعي
+Her report made a great stir when it was published.|أحدث تقريرها ضجة كبيرة عند نشره.|make a stir=يثير ضجة
+The local people welcomed the attention, and the town began to attract visitors once again.|رحّب السكان المحليون بالاهتمام، وبدأت البلدة تجذب الزوار من جديد.|visitors=زوار
+Elena had come to study an ancient harbor, but she had discovered that preserving history was also a way of protecting humanity.|جاءت إيلينا لدراسة ميناء قديم، لكنها اكتشفت أن حفظ التاريخ هو أيضًا طريقة لحماية الإنسانية.|`},
+{t:"Across the Frozen Frontier",x:`At the beginning of winter, a scientific expedition prepared to travel toward the North Pole.|في بداية الشتاء، استعدّت بعثة علمية للسفر نحو القطب الشمالي.|expedition=بعثة استكشافية، رحلة استكشاف؛ North Pole=القطب الشمالي
+Its leader, Captain Robert Hayes, was a typical example of a persistent and persevering explorer.|كان قائدها، الكابتن روبرت هايز، مثالًا نموذجيًّا للمستكشف المثابر والصبور.|typical=نموذجي، تقليدي؛ persistent=مثابر، مُصرّ؛ persevering=صبور، مواظب؛ explorer=مستكشف
+He had a strong background in geography and years of previous experience working in remote regions.|كانت لديه خلفية قوية في الجغرافيا وسنوات من الخبرة السابقة في العمل بالمناطق النائية.|background=خلفية؛ geography=جغرافيا
+
+Before departure, he reviewed the expedition’s special topic: how climate change was affecting the Arctic environment.|قبل المغادرة، راجع الموضوع الخاص بالبعثة: كيف يؤثر تغيّر المناخ في البيئة القطبية الشمالية.|departure=مغادرة، رحيل؛ reviewed=راجع؛ topic=موضوع؛ climate change=تغيّر المناخ؛ Arctic=القطب الشمالي، قطبي
+He investigated old records, observed animal behavior, and interviewed several researchers who had visited the region.|فحص سجلات قديمة، وراقب سلوك الحيوانات، وأجرى مقابلات مع عدة باحثين زاروا المنطقة.|observed=راقب؛ interviewed=أجرى مقابلة مع
+
+His main post was to lead the team, but he also had to comment on their findings and record every important observation.|كان منصبه الرئيسي قيادة الفريق، لكن كان عليه أيضًا التعليق على نتائجهم وتسجيل كل ملاحظة مهمة.|post=منصب، موقع؛ lead=يقود؛ comment on=يعلّق على؛ record=يسجّل
+He firmly believed that knowledge was only useful when people paid attention to it and acted upon it.|كان يؤمن بشدة بأن المعرفة لا تنفع إلا حين ينتبه لها الناس ويعملون بها.|firmly=بحزم، بثبات؛ pay attention to=ينتبه لـ؛ act upon=يعمل بمقتضى
+
+The journey was not easy. The team had to open up a new route across an unexplored area, and every decision had to be within their power and ability.|لم تكن الرحلة سهلة. كان على الفريق شقّ طريق جديد عبر منطقة غير مستكشفة، وكان على كل قرار أن يكون في حدود قدرتهم وطاقتهم.|open up=يشقّ، يفتح؛ route=طريق، مسار؛ unexplored=غير مستكشف؛ within one’s power=في حدود قدرته
+They packed their clothing, food, medical supplies, and scientific equipment into strong packages.|حزموا ملابسهم وطعامهم ومؤنهم الطبية ومعداتهم العلمية في طرود متينة.|packed=حزم، عبّأ؛ supplies=مؤن، إمدادات؛ packages=طرود، حزم
+Their guide explained that the chains connecting their equipment had to be checked carefully.|شرح مرشدهم أن السلاسل التي تربط معداتهم ينبغي فحصها بعناية.|chains=سلاسل؛ connecting=يربط، يصل
+
+One evening, the team encountered a terrible storm.|في مساء ما، واجه الفريق عاصفة مروعة.|encountered=واجه، صادف؛ storm=عاصفة
+The temperature dropped to a severe cold, and the explorers became tired and weary.|انخفضت الحرارة إلى برد قارس، وأصاب المستكشفين التعب والإرهاق.|temperature=درجة الحرارة؛ dropped=انخفض؛ weary=مرهق، متعب
+A married couple in the group struggled to protect their supplies.|كافح زوجان في المجموعة لحماية مؤنهما.|married couple=زوجان
+They tied up the equipment to prevent it from being scattered by the wind.|ربطا المعدات لمنعها من أن تتبعثر بفعل الرياح.|tied up=ربط، شدّ
+
+Suddenly, a loud noise came from behind a hill.|فجأة، جاء ضجيج عالٍ من خلف تل.|loud=عالٍ (صوت)
+A researcher was amazed to discover that a rescue vehicle had become trapped beneath a pile of ice.|دُهش أحد الباحثين حين اكتشف أن مركبة إنقاذ علقت تحت كومة من الجليد.|vehicle=مركبة؛ trapped=محاصر، عالق؛ pile=كومة؛ ice=جليد
+The disaster was urgent and could brook no delay.|كانت الكارثة عاجلة ولا تحتمل أي تأخير.|disaster=كارثة؛ brook=يحتمل، يتسامح مع؛ delay=تأخير
+Captain Hayes stirred up the team to act quickly.|حثّ الكابتن هايز الفريق على التحرك بسرعة.|stir up=يحرّض، يحفّز، يثير
+His instinct told him that someone might still be inside.|أخبره حدسه أن أحدًا قد يكون لا يزال بالداخل.|instinct=غريزة، حدس
+They crossed a frozen river and seized a rope attached to the vehicle.|عبروا نهرًا متجمدًا وأمسكوا بحبل متصل بالمركبة.|frozen=متجمد؛ seize=يمسك بقوة، يستولي على؛ rope=حبل؛ attached=متصل
+After several attempts, they managed to release the trapped driver and rescue him.|بعد عدة محاولات، تمكنوا من تحرير السائق العالق وإنقاذه.|attempts=محاولات؛ driver=سائق
+
+The driver was hungry and exhausted.|كان السائق جائعًا ومنهكًا.|
+He explained that he had been traveling along a route that cut across the frozen landscape when his vehicle broke down.|شرح أنه كان يسافر على طريق يقطع المشهد المتجمد حين تعطّلت مركبته.|cut across=يقطع، يعبر؛ broke down=تعطّل
+He had suffered from diarrhea after drinking unsafe water and had barely been able to continue.|كان قد عانى من الإسهال بعد شرب ماء غير آمن وبالكاد استطاع المواصلة.|diarrhea=إسهال؛ unsafe=غير آمن
+The team gave him food and warm clothes.|أعطاه الفريق طعامًا وملابس دافئة.|clothes=ملابس
+They also helped him control his breathing and recover from the shock.|وساعدوه أيضًا على التحكم في تنفسه والتعافي من الصدمة.|shock=صدمة
+Hayes wrote down the details of the incident so that future explorers could avoid the same danger.|دوّن هايز تفاصيل الحادثة كي يتجنب المستكشفون في المستقبل الخطر نفسه.|wrote down=دوّن، سجّل؛ avoid=يتجنب
+
+Later, the team discussed the difference between instinct and impulse.|لاحقًا، ناقش الفريق الفرق بين الغريزة والاندفاع.|difference=فرق؛ impulse=اندفاع، دافع مفاجئ
+Instinct had helped them recognize danger, while an uncontrolled impulse could have made the situation worse.|ساعدتهم الغريزة على إدراك الخطر، بينما كان الاندفاع غير المنضبط ليزيد الوضع سوءًا.|recognize=يتعرّف على، يدرك
+
+Their expedition expenses were higher than expected.|كانت مصاريف بعثتهم أعلى من المتوقع.|expected=متوقع
+They had to make careful calculations and follow strict budgeting.|كان عليهم إجراء حسابات دقيقة والتزام ميزنة صارمة.|calculations=حسابات؛ strict=صارم؛ budgeting=وضع الميزانية، ضبط الإنفاق
+They reduced unnecessary expenditure and spending, and used part of their savings and deposits to cover the emergency costs.|قلّلوا النفقات غير الضرورية والإنفاق، واستخدموا جزءًا من مدخراتهم وودائعهم لتغطية تكاليف الطوارئ.|unnecessary=غير ضروري؛ expenditure=نفقات؛ spending=إنفاق؛ savings=مدخرات؛ deposits=ودائع؛ emergency=طوارئ
+They agreed to make do with limited supplies and put up with difficult conditions.|اتفقوا على الاكتفاء بمؤن محدودة وتحمّل ظروف صعبة.|put up with=يتحمّل، يصبر على
+Their goal was to complete the journey without allowing the storm to dominate their minds.|كان هدفهم إتمام الرحلة دون السماح للعاصفة بالسيطرة على عقولهم.|goal=هدف؛ dominate=يهيمن على، يسيطر على
+
+As they approached the equator on their return journey, the weather became warmer.|وبينما اقتربوا من خط الاستواء في رحلة العودة، صار الطقس أدفأ.|equator=خط الاستواء؛ return journey=رحلة العودة
+They came across an old research station filled with antique and outdated equipment.|صادفوا محطة أبحاث قديمة مليئة بمعدات أثرية وعتيقة.|come across=يصادف، يعثر على؛ station=محطة؛ antique=أثري، عتيق؛ outdated=قديم، عفا عليه الزمن
+The team decided to donate the usable items to a museum.|قرر الفريق التبرع بالأغراض الصالحة للاستخدام إلى متحف.|donate=يتبرع؛ usable=صالح للاستخدام؛ museum=متحف
+At the summit of their achievement, Captain Hayes looked back at the expedition.|عند قمة إنجازهم، نظر الكابتن هايز إلى الوراء نحو البعثة.|summit=قمة، ذروة
+He was surprised by how much the team had learned.|تفاجأ بمقدار ما تعلّمه الفريق.|
+The journey had shown them that courage was not the absence of fear, but the ability to act wisely despite it.|أظهرت لهم الرحلة أن الشجاعة ليست غياب الخوف، بل القدرة على التصرف بحكمة رغمه.|despite=رغم، بالرغم من؛ wisely=بحكمة
+The explorers returned home safely, determined to share their findings and help others understand the fragile Arctic environment.|عاد المستكشفون إلى الوطن بسلام، عازمين على مشاركة نتائجهم ومساعدة الآخرين على فهم البيئة القطبية الهشّة.|safely=بسلام، بأمان؛ fragile=هش، سريع الكسر`}];
+
+const seen=new Set();
+const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+const L=D.map(d=>d.x.split("\n\n").map(p=>p.split("\n").map(l=>{
+ const [en,ar,v]=l.split("|");
+ const w=(v||"").split("؛").map(s=>s.trim()).filter(Boolean).map(s=>{const i=s.indexOf("=");return[s.slice(0,i),s.slice(i+1)]}).filter(([k])=>{const q=k.toLowerCase();if(seen.has(q))return false;seen.add(q);return true});
+ return{en,ar,w}})));
+const app=document.getElementById("app"),R=document.documentElement;
+function home(){app.innerHTML='<h1>📖 اختر الدرس</h1><div class="home">'+D.map((d,i)=>`<div class="hb"><button class="c" onclick="lesson(${i})">${i+1}</button>${d.t}</div>`).join("")+"</div>"}
+function hl(en,w){let h=en.replace(/&/g,"&amp;").replace(/</g,"&lt;");w.forEach(([k])=>{h=h.replace(new RegExp("(^|[^\\w>])("+esc(k.replace(/’/g,"'")).replace(/'/g,"['’]")+")(?![\\w])","i"),"$1<mark>$2</mark>")});return h}
+function lesson(i){let n=0;app.innerHTML=`<button class="back" onclick="home()">→ الرجوع</button><div class="hd">الدرس ${i+1}<h1>${D[i].t}</h1></div>`+L[i].map((p,pi)=>`<div class="pt">فقرة ${pi+1}</div>`+p.map(s=>{n++;return`<div class="s"><span class="n">${n}</span><button class="sp" onclick="say(this.parentNode.querySelector('.en').textContent)">🔊</button><div class="en">${hl(s.en,s.w)}</div><div class="ar">${s.ar}</div>${s.w.length?`<div class="v">${s.w.map(([a,b])=>`<div onclick="say(this.firstChild.textContent)"><b>${a}</b>${b}</div>`).join("")}</div>`:""}</div>`}).join("")).join("");scrollTo(0,0)}
+const bt=document.getElementById("bt");
+function setT(t){R.dataset.theme=t;bt.textContent=t=="dark"?"☀":"☾"}
+try{setT(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){setT("light")}
+bt.onclick=()=>setT(R.dataset.theme=="dark"?"light":"dark");
+function tg(id,c){const b=document.getElementById(id);b.onclick=()=>b.classList.toggle("off",document.body.classList.toggle(c))}
+tg("ba","hide-ar");tg("be","hide-en");
+let V=null;
+function pick(){const a=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));V=a.find(v=>v.localService)||a[0]||null}
+if("speechSynthesis" in window){speechSynthesis.onvoiceschanged=pick;pick()}
+function say(t){if(!("speechSynthesis" in window)){alert("جهازك مش بيدعم النطق هنا");return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";if(V)u.voice=V;u.rate=.85;speechSynthesis.speak(u)}
+home();
+</script></body></html>
